@@ -1,352 +1,217 @@
 [
   {
     "id": 1,
-    "name": "Dr. Emma Nguyen",
-    "specialty": "Cardiology",
-    "hospital": "HeartCare Hospital",
-    "image": "https://cdn.youmed.vn/photos/9a69233f-2da3-4aaa-9665-7bc4f1ad2a6a.jpg"
+    "name": "Dr. Alice Nguyen",
+    "specialty": "Spine Care",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/21.jpg"
   },
   {
     "id": 2,
-    "name": "Dr. John Tran",
-    "specialty": "Neurology",
-    "hospital": "NeuroHealth Institute",
-    "image": "https://cdn.youmed.vn/photos/449c2818-9f35-437e-a2b9-b77c9888c0f1.jpg"
+    "name": "Dr. David Tran",
+    "specialty": "Cardiology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/31.jpg"
   },
   {
     "id": 3,
-    "name": "Dr. Lisa Pham",
-    "specialty": "Pediatrics",
-    "hospital": "Children’s Medical Center",
-    "image": "https://cdn.youmed.vn/photos/949bfe9b-b2f7-41d9-b892-88fa8e4f44e2.jpg"
+    "name": "Dr. Emily Le",
+    "specialty": "Cardiology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/32.jpg"
   },
   {
     "id": 4,
-    "name": "Dr. David Le",
-    "specialty": "Orthopedics",
-    "hospital": "Bone & Joint Hospital",
-    "image": "https://cdn.youmed.vn/photos/67c3e343-bbab-46f2-950e-f11b86ecde6e.jpg"
+    "name": "Dr. Peter Vu",
+    "specialty": "Spine Care",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/45.jpg"
   },
   {
     "id": 5,
-    "name": "Dr. Anna Vu",
-    "specialty": "Dermatology",
-    "hospital": "SkinCare Clinic",
-    "image": "https://cdn.youmed.vn/photos/04c872fa-81b8-4fcc-a2d5-70562e56a02b.jpg"
+    "name": "Dr. Sarah Pham",
+    "specialty": "Cardiology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/26.jpg"
   },
+
   {
     "id": 6,
-    "name": "Dr. Michael Ho",
-    "specialty": "Oncology",
-    "hospital": "Cancer Treatment Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor6.webp"
+    "name": "Dr. John Bui",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/52.jpg"
   },
   {
     "id": 7,
-    "name": "Dr. Susan Do",
-    "specialty": "Ophthalmology",
-    "hospital": "Eye Health Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor7.webp"
+    "name": "Dr. Jennifer Do",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/55.jpg"
   },
   {
     "id": 8,
-    "name": "Dr. Brian Phan",
-    "specialty": "Dentistry",
-    "hospital": "Smile Dental Care",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor8.webp"
+    "name": "Dr. William Ho",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/56.jpg"
   },
   {
     "id": 9,
-    "name": "Dr. Karen Bui",
-    "specialty": "Gynecology",
-    "hospital": "Women’s Health Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor9.webp"
+    "name": "Dr. Hannah Lam",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/62.jpg"
   },
   {
     "id": 10,
-    "name": "Dr. Jason Nguyen",
-    "specialty": "Psychiatry",
-    "hospital": "MindCare Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor10.webp"
+    "name": "Dr. Michael Phan",
+    "specialty": "Spine Care",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/66.jpg"
   },
+
   {
     "id": 11,
-    "name": "Dr. Kevin Vo",
-    "specialty": "Endocrinology",
-    "hospital": "Diabetes & Hormone Clinic",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor11.webp"
+    "name": "Dr. Lisa Huynh",
+    "specialty": "Spine Care",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/35.jpg"
   },
   {
     "id": 12,
-    "name": "Dr. Natalie Tran",
-    "specialty": "Urology",
-    "hospital": "Kidney Health Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor12.webp"
+    "name": "Dr. Thomas Le",
+    "specialty": "Gastroenterology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/38.jpg"
   },
   {
     "id": 13,
-    "name": "Dr. Anthony Le",
+    "name": "Dr. Grace Nguyen",
     "specialty": "Gastroenterology",
-    "hospital": "Digestive Health Institute",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor13.webp"
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/41.jpg"
   },
   {
     "id": 14,
-    "name": "Dr. Sophia Pham",
-    "specialty": "Rheumatology",
-    "hospital": "Joint Care Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor14.webp"
+    "name": "Dr. Henry Phung",
+    "specialty": "Gastroenterology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/47.jpg"
   },
   {
     "id": 15,
-    "name": "Dr. Daniel Hoang",
-    "specialty": "Otolaryngology",
-    "hospital": "ENT Medical Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor15.webp"
+    "name": "Dr. Olivia Vo",
+    "specialty": "Gastroenterology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/44.jpg"
   },
+
   {
     "id": 16,
-    "name": "Dr. Grace Le",
-    "specialty": "Nephrology",
-    "hospital": "Kidney Specialist Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor16.webp"
+    "name": "Dr. Daniel Nguyen",
+    "specialty": "ENT (Ear, Nose, Throat)",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/60.jpg"
   },
   {
     "id": 17,
-    "name": "Dr. Henry Tran",
-    "specialty": "Hematology",
-    "hospital": "Blood Research Institute",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor17.webp"
+    "name": "Dr. Sophia Pham",
+    "specialty": "gastroenterology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/61.jpg"
   },
   {
     "id": 18,
-    "name": "Dr. Michelle Phan",
-    "specialty": "Obstetrics",
-    "hospital": "Family Birth Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor18.webp"
+    "name": "Dr. Ethan Tran",
+    "specialty": "gastroenterology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/62.jpg"
   },
   {
     "id": 19,
-    "name": "Dr. Thomas Nguyen",
-    "specialty": "Surgery",
-    "hospital": "Central Surgery Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor19.webp"
+    "name": "Dr. Mia Vo",
+    "specialty": "gastroenterology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/63.jpg"
   },
   {
     "id": 20,
-    "name": "Dr. Linda Vo",
-    "specialty": "Emergency Medicine",
-    "hospital": "City Emergency Unit",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor20.webp"
+    "name": "Dr. Andrew Ho",
+    "specialty": "ENT (Ear, Nose, Throat)",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/64.jpg"
   },
+
   {
     "id": 21,
-    "name": "Dr. Vivian Do",
-    "specialty": "Allergy & Immunology",
-    "hospital": "ImmunoCare Clinic",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor21.webp"
+    "name": "Dr. Natalie Do",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/68.jpg"
   },
   {
     "id": 22,
-    "name": "Dr. Andrew Pham",
-    "specialty": "Anesthesiology",
-    "hospital": "Safe Sleep Medical Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor22.webp"
+    "name": "Dr. Jason Le",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/69.jpg"
   },
   {
     "id": 23,
-    "name": "Dr. Chloe Tran",
-    "specialty": "Radiology",
-    "hospital": "Advanced Imaging Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor23.webp"
+    "name": "Dr. Linda Phan",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/70.jpg"
   },
   {
     "id": 24,
-    "name": "Dr. Eric Le",
-    "specialty": "Family Medicine",
-    "hospital": "Community Health Clinic",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor24.webp"
+    "name": "Dr. Kevin Nguyen",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/71.jpg"
   },
   {
     "id": 25,
-    "name": "Dr. Julia Nguyen",
-    "specialty": "Internal Medicine",
-    "hospital": "Metro General Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor25.webp"
+    "name": "Dr. Chloe Hoang",
+    "specialty": "Neurology",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/72.jpg"
   },
+
   {
     "id": 26,
-    "name": "Dr. Ryan Vo",
-    "specialty": "Infectious Diseases",
-    "hospital": "Infectious Disease Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor26.webp"
+    "name": "Dr. Jason Pham",
+    "specialty": "Orthopedics",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/73.jpg"
   },
   {
     "id": 27,
-    "name": "Dr. Daisy Phan",
-    "specialty": "Geriatrics",
-    "hospital": "Elderly Care Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor27.webp"
+    "name": "Dr. Emily Tran",
+    "specialty": "ENT (Ear, Nose, Throat)",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/74.jpg"
   },
   {
     "id": 28,
-    "name": "Dr. Samuel Ho",
-    "specialty": "Plastic Surgery",
-    "hospital": "Aesthetic Medical Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor28.webp"
+    "name": "Dr. Alex Le",
+    "specialty": "Orthopedics",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/75.jpg"
   },
   {
     "id": 29,
-    "name": "Dr. Tina Truong",
-    "specialty": "Rehabilitation Medicine",
-    "hospital": "Rehab & Physio Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor29.webp"
+    "name": "Dr. Lily Nguyen",
+    "specialty": "Orthopedics",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/women/76.jpg"
   },
   {
     "id": 30,
-    "name": "Dr. Jason Vu",
-    "specialty": "Sports Medicine",
-    "hospital": "Athlete Performance Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor30.webp"
-  },
-  {
-    "id": 31,
-    "name": "Dr. Nancy Dang",
-    "specialty": "Pathology",
-    "hospital": "Clinical Lab Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor31.webp"
-  },
-  {
-    "id": 32,
-    "name": "Dr. Vincent Lam",
-    "specialty": "Occupational Medicine",
-    "hospital": "Work Health Institute",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor32.webp"
-  },
-  {
-    "id": 33,
-    "name": "Dr. Sarah Do",
-    "specialty": "Nutrition & Dietetics",
-    "hospital": "Healthy Life Nutrition Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor33.webp"
-  },
-  {
-    "id": 34,
-    "name": "Dr. Brandon Pham",
-    "specialty": "Public Health",
-    "hospital": "Health Protection Agency",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor34.webp"
-  },
-  {
-    "id": 35,
-    "name": "Dr. Iris Le",
-    "specialty": "Imaging Diagnostics",
-    "hospital": "Digital Scan Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor35.webp"
-  },
-  {
-    "id": 36,
-    "name": "Dr. Peter Nguyen",
-    "specialty": "Pulmonary & Sleep Medicine",
-    "hospital": "Sleep & Breathing Clinic",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor36.webp"
-  },
-  {
-    "id": 37,
-    "name": "Dr. Laura Vo",
-    "specialty": "Osteopathy",
-    "hospital": "Spine & Movement Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor37.webp"
-  },
-  {
-    "id": 38,
-    "name": "Dr. Benjamin Tran",
-    "specialty": "Radiation Oncology",
-    "hospital": "OncoRay Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor38.webp"
-  },
-  {
-    "id": 39,
-    "name": "Dr. Hannah Bui",
-    "specialty": "Palliative Care",
-    "hospital": "Compassion Health Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor39.webp"
-  },
-  {
-    "id": 40,
-    "name": "Dr. Adam Ho",
-    "specialty": "Vascular Surgery",
-    "hospital": "Cardio Vascular Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor40.webp"
-  },
-  {
-    "id": 41,
-    "name": "Dr. Olivia Le",
-    "specialty": "Clinical Pharmacology",
-    "hospital": "Pharma Research Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor41.webp"
-  },
-  {
-    "id": 42,
-    "name": "Dr. Marcus Phan",
-    "specialty": "Invasive Cardiology",
-    "hospital": "Heart Intervention Unit",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor42.webp"
-  },
-  {
-    "id": 43,
-    "name": "Dr. Zoe Tran",
-    "specialty": "Pain Management",
-    "hospital": "Pain Relief Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor43.webp"
-  },
-  {
-    "id": 44,
-    "name": "Dr. Ethan Dang",
-    "specialty": "Genetics",
-    "hospital": "Genome Medical Institute",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor44.webp"
-  },
-  {
-    "id": 45,
-    "name": "Dr. Amy Vu",
-    "specialty": "Reproductive Endocrinology",
-    "hospital": "Fertility & IVF Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor45.webp"
-  },
-  {
-    "id": 46,
-    "name": "Dr. Jacob Le",
-    "specialty": "Emergency & Trauma Surgery",
-    "hospital": "Trauma Care Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor46.webp"
-  },
-  {
-    "id": 47,
-    "name": "Dr. Stella Nguyen",
-    "specialty": "Audiology",
-    "hospital": "Hearing Health Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor47.webp"
-  },
-  {
-    "id": 48,
-    "name": "Dr. Paul Tran",
-    "specialty": "Neurosurgery",
-    "hospital": "Brain & Spine Hospital",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor48.webp"
-  },
-  {
-    "id": 49,
-    "name": "Dr. Emma Vo",
-    "specialty": "Respiratory Therapy",
-    "hospital": "Lung Recovery Center",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor49.webp"
-  },
-  {
-    "id": 50,
-    "name": "Dr. Nathan Pham",
-    "specialty": "Critical Care Medicine",
-    "hospital": "Intensive Care Unit",
-    "image": "https://cdn.youmed.vn/wp-content/themes/youmed/images/doctor50.webp"
+    "name": "Dr. Robert Vo",
+    "specialty": "ENT (Ear, Nose, Throat)",
+    "hospital": "MediConnect",
+    "image": "https://randomuser.me/api/portraits/men/77.jpg"
   }
 ]
