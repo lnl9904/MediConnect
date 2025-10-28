@@ -22,15 +22,7 @@ const Banner = () => {
         </div>
       </div>
 
-      {/* --- Nội dung chữ (nếu muốn thêm) --- */}
-      <div className="banner-content">
-        <div className="container">
-          <div className="text-banner">
-            <h1 className="title-banner">Welcome to MediConnect</h1>
-            <p>Book your medical appointments with trusted doctors easily.</p>
-          </div>
-        </div>
-      </div>
+    
     </section>
   );
 };
