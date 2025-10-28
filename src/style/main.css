@@ -1,0 +1,24 @@
+.main-content {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+h2, h3 {
+  color: #0D6EFD;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+button {
+  background-color: #0D6EFD;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}

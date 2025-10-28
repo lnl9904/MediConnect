@@ -29,8 +29,8 @@ export default function Header() {
                 <NavDropdown title="Tài khoản" id="user-dropdown" align="end">
                   {role === "admin" && (
                     <>
-                      <NavDropdown.Item as={Link} to="/admin/dashboard">Admin page</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="/admin/manage-users">User management</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/admin">Admin page</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/admin/users">User management</NavDropdown.Item>
                     </>
                   )}
                   {role === "doctor" && (

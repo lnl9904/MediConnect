@@ -1,0 +1,139 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Nguyễn Văn A",
+      "email": "a@example.com",
+      "password": "hashed_password",
+      "role": "doctor",
+      "phone": "0901234567",
+      "avatar": "https://example.com/avatar1.jpg",
+      "email_verified_at": "2025-10-01T10:00:00Z",
+      "created_at": "2025-09-01T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Trần Thị B",
+      "email": "b@example.com",
+      "password": "hashed_password",
+      "role": "patient",
+      "phone": "0907654321",
+      "avatar": "https://example.com/avatar2.jpg",
+      "email_verified_at": null,
+      "created_at": "2025-09-10T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
+    }
+  ],
+  "specialties": [
+    {
+      "id": 1,
+      "name": "Tim mạch",
+      "description": "Chuyên khoa về tim và mạch máu",
+      "created_at": "2025-09-01T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "specialty_id": 1,
+      "license_number": "VN123456",
+      "bio": "Bác sĩ chuyên khoa tim mạch với 10 năm kinh nghiệm.",
+      "experience_years": 10,
+      "education": "ĐH Y Hà Nội",
+      "certifications": "Chứng chỉ hành nghề, ACLS",
+      "consultation_fee": 300000.0000,
+      "status": "active",
+      "created_at": "2025-09-01T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "date_of_birth": "1990-05-20",
+      "gender": "Nữ",
+      "blood_group": "O+",
+      "address": "123 Đường ABC, Hà Nội",
+      "emergency_contact": "0912345678",
+      "insurance_number": "BHXH123456",
+      "medical_history": "Tiền sử cao huyết áp",
+      "allergies": "Không",
+      "created_at": "2025-09-10T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
+    }
+  ],
+  "appointment_slots": [
+    {
+      "id": 1,
+      "doctor_id": 1,
+      "slot_date": "2025-10-25",
+      "start_time": "09:00:00",
+      "end_time": "09:30:00",
+      "is_available": true,
+      "created_at": "2025-10-01T08:00:00Z",
+      "updated_at": "2025-10-01T08:00:00Z"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "slot_id": 1,
+      "patient_id": 1,
+      "symptoms": "Đau ngực, khó thở",
+      "notes": "Khám lần đầu",
+      "status": "confirmed",
+      "payment_status": "paid",
+      "meeting_link": "https://meet.example.com/abc123",
+      "created_at": "2025-10-20T08:00:00Z",
+      "updated_at": "2025-10-21T08:00:00Z",
+      "cancelled_at": null
+    }
+  ],
+  "medical_records": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "doctor_id": 1,
+      "appointment_id": 1,
+      "diagnosis": "Thiếu máu cơ tim",
+      "prescription": "Aspirin, thuốc giãn mạch",
+      "lab_results": "ECG bất thường",
+      "notes": "Cần theo dõi thêm",
+      "vital_signs": "Huyết áp: 140/90, Nhịp tim: 95",
+      "follow_up_instructions": "Tái khám sau 1 tuần",
+      "next_visit_date": "2025-10-28",
+      "created_at": "2025-10-21T08:00:00Z",
+      "updated_at": "2025-10-21T08:00:00Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "doctor_id": 1,
+      "appointment_id": 1,
+      "rating": 5,
+      "comment": "Bác sĩ rất tận tâm và chuyên nghiệp.",
+      "is_approved": true,
+      "created_at": "2025-10-21T09:00:00Z",
+      "updated_at": "2025-10-21T09:00:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "type": "appointment",
+      "title": "Xác nhận lịch hẹn",
+      "message": "Lịch hẹn với BS. Nguyễn Văn A đã được xác nhận.",
+      "data": "{}",
+      "is_read": false,
+      "read_at": null,
+      "created_at": "2025-10-21T09:30:00Z"
+    }
+  ]
+}

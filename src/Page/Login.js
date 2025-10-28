@@ -16,7 +16,10 @@ export default function Login() {
         //Tạo object chứa thông tin user
         const userData = { email, fullName };
         login(userData, role); //truyền đúng format
-        navigate("/");
+        // Redirect based on role
+        if (role === 'admin') navigate('/admin');
+        else if (role === 'doctor') navigate('/doctor');
+        else navigate('/');
     };
     return (
         <Container className="mt-5" style={{ maxWidth: "450px" }}>
