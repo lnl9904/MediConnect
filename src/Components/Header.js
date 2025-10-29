@@ -26,7 +26,7 @@ export default function Header() {
                 <span className="me-3 fw-semibold text-primary">
                   Hello, {user.fullName}
                 </span>
-                <NavDropdown title="Tài khoản" id="user-dropdown" align="end">
+                <NavDropdown title="Account" id="user-dropdown" align="end">
                   {role === "admin" && (
                     <>
                       <NavDropdown.Item as={Link} to="/admin/dashboard">Admin page</NavDropdown.Item>

@@ -13,6 +13,7 @@ import DoctorNotifications from './Page/Doctor/DoctorNotifications';
 import AllDoctorsPage from "./Page/AllDoctorsPage";
 import DoctorDetailPage from "./Page/DoctorDetailPage";
 import ConfirmAppointmentPage from "./Page/ConfirmAppointmentPage";
+import PatientProfile from './Page/PatientProfile';
 function App() {
   return (
     <AuthProvider>
@@ -33,6 +34,7 @@ function App() {
               <Route path="/doctors" element={<AllDoctorsPage />} />
               <Route path="/doctor/:id" element={<DoctorDetailPage />} />
               <Route path="/confirm-appointment" element={<ConfirmAppointmentPage />} />
+              <Route path="/patient/profile" element={<PatientProfile />} />
             </Routes>
           </div>
         </main>

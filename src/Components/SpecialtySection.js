@@ -25,7 +25,7 @@ function SpecialtySection() {
             <div
               key={item.id}
               className="specialty-item"
-              onClick={() => navigate(`/specialty/${item.id}`)} // ✅ điều hướng
+              onClick={() => navigate(`/specialty/${item.id}`)}
             >
               <img src={item.icon} alt={item.name} />
               <p>{item.name}</p>
