@@ -1,7 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import AuthContext from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
+import doctorsData from "../../data/doctors.json";
 
 export default function DoctorProfile() {
     const { user } = useContext(AuthContext);
@@ -15,6 +16,20 @@ export default function DoctorProfile() {
         address: user?.address || "",
     });
     const [editMode, setEditMode] = useState(false);
+    useEffect(() => {
+        if (user?.email) {
+            const foundDoctor = doctorsData.find(
+                (doc) => doc.email.toLowerCase() === user.email.toLowerCase()
+            );
+            if (foundDoctor) {
+                setProfile((prev) => ({
+                    ...prev,
+                    specialization: foundDoctor.specialty,
+                    degree: foundDoctor.degree,
+                }));
+            }
+        }
+    }, [user]);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProfile({ ...profile, [name]: value });

@@ -57,7 +57,7 @@ export default function SpecialtyDetailPage() {
               <p>{doctor.specialty}</p>
               <button
                 className="btn btn-primary mt-2"
-                onClick={() => navigate(`/doctor/${doctor.id}`)} // ✅ điều hướng tới trang chi tiết bác sĩ
+                onClick={() => navigate(`/doctor/${doctor.id}`)} 
                 >
                 Book Appointment
                 </button>

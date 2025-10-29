@@ -1,34 +1,38 @@
 import { useState, useContext } from "react";
-import { Form, Button, Container, Card } from "react-bootstrap";
+import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../Context/Context";
+import doctorsData from "../data/doctors.json"; // Import dữ liệu bác sĩ từ file JSON
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [role, setRole] = useState("patient");
     const [fullName, setFullName] = useState("");
+    const [error, setError] = useState(""); // State để lưu thông báo lỗi
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //Tạo object chứa thông tin user
+        setError("");
+        if (role === "doctor") {
+            const foundDoctor = doctorsData.find(
+                (doc) =>
+                doc.name.toLowerCase() === fullName.trim().toLowerCase() &&
+                doc.email.toLowerCase() === email.trim().toLowerCase() &&
+                doc.password === password 
+            );
+            if (!foundDoctor) {
+                setError("Incorrect doctor account information.");
+                return;
+            }
+        }
         const userData = { email, fullName };
         login(userData, role); //truyền đúng format
-        switch (role) {
-            case "doctor":
-                navigate("/doctor/dashboard");
-                break;
-            case "admin":
-                navigate("/admin/dashboard");
-                break;
-            case "patient":
-                navigate("/"); 
-                break;
-            default:
-                navigate("/");
-        }
+        if (role === "doctor") navigate("/doctor/dashboard");
+        else if (role === "admin") navigate("/admin/dashboard");
+        else navigate("/");
     };
     return (
        <Container className="mt-5" style={{ maxWidth: "450px" }}>
@@ -54,6 +58,11 @@ export default function Login() {
                         <option value="patient">Patient</option>
                         </Form.Select>
                     </Form.Group>
+                    {error && (
+                        <Alert variant="danger" className="text-center">
+                            {error}
+                        </Alert>
+                    )}
                     <div className="d-grid gap-2">
                         <Button type="submit" variant="primary">Login</Button>
                         <Button variant="secondary" onClick={() => navigate("/")}>Cancel</Button>
