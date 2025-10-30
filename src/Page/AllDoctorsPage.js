@@ -29,11 +29,7 @@ export default function AllDoctorsPage() {
       <div className="text-center mb-4">
         <label htmlFor="specialty" className="me-2 fw-semibold">Filter by Specialty:</label>
         <select id="specialty" className="form-select d-inline-block w-auto" value={selectedSpecialty} onChange={(e) => setSelectedSpecialty(e.target.value)}>
-          {specialties.map((spec) => (
-            <option key={spec.id} value={spec.name}>
-              {spec.name}
-            </option>
-          ))}
+          {specialties.map((spec) => (<option key={spec.id} value={spec.name}>{spec.name}</option>))}
         </select>
       </div>
       <div className="row g-4">

@@ -11,30 +11,21 @@ const specialties = [
   { id: 6, name: "Spine Care", icon: "https://cdn.bookingcare.vn/fo/2023/12/26/101627-cot-song.png" },
 ];
 
-function SpecialtySection() {
+export default function SpecialtySection() {
   const navigate = useNavigate();
-
   return (
-    <section className="specialty-section">
-      <div className="container">
-        <h2 className="section-title text-primary fw-bold">
-          Specialized Medical Departments
-        </h2>
-        <div className="specialty-grid">
-          {specialties.map((item) => (
-            <div
-              key={item.id}
-              className="specialty-item"
-              onClick={() => navigate(`/specialty/${item.id}`)}
-            >
-              <img src={item.icon} alt={item.name} />
-              <p>{item.name}</p>
+    <div className="container my-5">
+      <h2 className="fw-bold text-primary mb-4">Specialized Medical Departments</h2>
+      <div className="row g-4">
+        {specialties.map((s) => (
+          <div key={s.id} className="col-6 col-md-4 col-lg-2 text-center">
+            <div className="card shadow-sm p-3 h-100" style={{ cursor: "pointer" }} onClick={() => navigate(`/specialty/${s.id}`)}>
+              <img src={s.icon} alt={s.name} className="img-fluid mb-2" />
+              <h6 className="fw-bold">{s.name}</h6>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
-
-export default SpecialtySection;

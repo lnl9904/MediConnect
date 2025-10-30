@@ -12,9 +12,7 @@ export default function DoctorDashboard() {
             <Card.Body className="d-flex flex-column justify-content-between">
               <Card.Title>Manage Profile</Card.Title>
               <Card.Text>Update your specialty, degrees, and contact info.</Card.Text>
-              <Button as={Link} to="/doctor/profile" variant="primary" className="w-100 mt-3">
-                Go to Profile
-              </Button>
+              <Button as={Link} to="/doctor/profile" variant="primary" className="w-100 mt-3">Go to Profile</Button>
             </Card.Body>
           </Card>
         </div>
@@ -23,9 +21,7 @@ export default function DoctorDashboard() {
             <Card.Body className="d-flex flex-column justify-content-between">
               <Card.Title>Appointment Schedule</Card.Title>
               <Card.Text>View or manage your schedule by day, week, or month.</Card.Text>
-              <Button as={Link} to="/doctor/appointments" variant="primary" className="w-100 mt-3">
-                Manage Schedule
-              </Button>
+              <Button as={Link} to="/doctor/appointments" variant="primary" className="w-100 mt-3">Manage Schedule</Button>
             </Card.Body>
           </Card>
         </div>
@@ -34,9 +30,7 @@ export default function DoctorDashboard() {
             <Card.Body className="d-flex flex-column justify-content-between">
               <Card.Title>Notifications</Card.Title>
               <Card.Text>Get updates on booking, rescheduling, or cancellations.</Card.Text>
-              <Button as={Link} to="/doctor/notifications" variant="primary" className="w-100 mt-3">
-                View Notifications
-              </Button>
+              <Button as={Link} to="/doctor/notifications" variant="primary" className="w-100 mt-3">View Notifications</Button>
             </Card.Body>
           </Card>
         </div>

@@ -39,28 +39,18 @@ export default function SpecialtyDetailPage() {
 
   return (
     <div className="container py-4">
-      <button className="btn btn-outline-primary mb-3" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
-      <h2 className="text-primary fw-bold mb-4 text-center">
-        {specialty.name} Doctors
-      </h2>
-
+      <button className="btn btn-outline-primary mb-3" onClick={() => navigate(-1)}>← Back</button>
+      <h2 className="text-primary fw-bold mb-4 text-center">{specialty.name} Doctors</h2>
       {doctorsBySpecialty.length === 0 ? (
         <p className="text-center text-muted">No doctors found for this specialty.</p>
-      ) : (
+        ) : (
         <div className="doctor-grid">
           {doctorsBySpecialty.map((doctor) => (
             <div key={doctor.id} className="doctor-card">
               <img src={doctor.image} alt={doctor.name} />
               <h5>{doctor.name}</h5>
               <p>{doctor.specialty}</p>
-              <button
-                className="btn btn-primary mt-2"
-                onClick={() => navigate(`/doctor/${doctor.id}`)} 
-                >
-                Book Appointment
-                </button>
+              <button className="btn btn-primary mt-2" onClick={() => navigate(`/doctor/${doctor.id}`)} >Book Appointment</button>
             </div>
           ))}
         </div>

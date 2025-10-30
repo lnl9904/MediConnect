@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "firstName": "Ha Linh",
+        "fullName": "Ha Linh Tran",
+        "lastName": "Tran",
+        "email": "linh@gmail.com",
+        "password": "123456",
+        "phone": "0901234567",
+        "gender": "male",
+        "dob": "2003-05-18"
+    },
+    {
+        "id": 2,
+        "firstName": "Đuc Bo",
+        "lastName": "Tran",
+        "fullName": "Đuc Bo Tran",
+        "email": "bo@gmail.com",
+        "password": "abc123",
+        "phone": "0987654321",
+        "gender": "female",
+        "dob": "2000-08-25"
+    },
+    {
+        "id": 3,
+        "firstName": "Dog Bee",
+        "lastName": "Tran",
+        "fullName": "Dog Bee Tran",
+        "email": "Be@gmail.com",
+        "password": "abc12345",
+        "phone": "09876543216",
+        "gender": "female",
+        "dob": "2005-08-25"
+    },
+    {
+        "id": 4,
+        "firstName": "Coder",
+        "lastName": "Sieu",
+        "fullName": "Coder Sieu",
+        "email": "Coder@gmail.com",
+        "password": "abc12398",
+        "phone": "0987654321846",
+        "gender": "female",
+        "dob": "2000-07-25"
+    }
+]

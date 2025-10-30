@@ -1,75 +1,52 @@
-import React, { useState } from "react";
-import { Button, Card, ButtonGroup, ListGroup, Form } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Button, Card, ButtonGroup, ListGroup, Form, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import AppointmentContext from "../../Context/AppointmentContext";
 
 export default function DoctorAppointments() {
     const navigate = useNavigate();
-    const [view, setView] = useState("day"); 
-    const [selectedDate, setSelectedDate] = useState(() => {
-        const today = new Date();
-        return today.toISOString().split("T")[0]; 
-    });
-    const sampleAppointments = {
-        "2025-10-20": [
-        { time: "08:00", patient: "Nguyễn Văn A", reason: "Khám tổng quát" },
-        ],
-        "2025-10-21": [
-        { time: "09:00", patient: "Trần Thị B", reason: "Khám tim mạch" },
-        { time: "14:00", patient: "Lê Minh C", reason: "Khám tai mũi họng" },
-        ],
-        "2025-10-23": [
-        { time: "10:30", patient: "Võ Thị D", reason: "Khám da liễu" },
-        ],
-        "2025-10-24": [
-        { time: "15:00", patient: "Phạm Văn E", reason: "Khám mắt" },
-        ],
-    };
-    //Hàm tính khoảng tuần
-    const getWeekRange = (date) => {
-        const d = new Date(date);
-        const day = d.getDay() || 7; 
-        const monday = new Date(d);
-        monday.setDate(d.getDate() - (day - 1));
-        const sunday = new Date(monday);
-        sunday.setDate(monday.getDate() + 6);
-        return [monday, sunday];
-    };
-    //Lọc dữ liệu theo view
-    let filteredAppointments = [];
-    if (view === "day") {
-        filteredAppointments = [
-        { date: selectedDate, list: sampleAppointments[selectedDate] || [] },
-        ];
-    } else if (view === "week") {
-        const [monday, sunday] = getWeekRange(selectedDate);
-        const current = new Date(monday);
-        while (current <= sunday) {
-        const dateStr = current.toISOString().split("T")[0];
-        filteredAppointments.push({
-            date: dateStr,
-            list: sampleAppointments[dateStr] || [],
-        });
-        current.setDate(current.getDate() + 1);
+    const { appointments, updateAppointmentStatus } = useContext(AppointmentContext);
+    const [view, setView] = useState("day");
+    const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().split("T")[0]);
+
+    // Nhóm lịch hẹn theo ngày
+    const groupedAppointments = appointments.reduce((acc, appt) => {
+        if (!acc[appt.date]) acc[appt.date] = [];
+        acc[appt.date].push(appt);
+        return acc;
+    }, {});
+
+    const getFilteredAppointments = () => {
+        if (view === "day") {
+            return [{ date: selectedDate, list: groupedAppointments[selectedDate] || [] }];
         }
-    } else if (view === "month") {
-        const month = new Date(selectedDate).getMonth();
-        Object.keys(sampleAppointments).forEach((d) => {
-        if (new Date(d).getMonth() === month) {
-            filteredAppointments.push({
-            date: d,
-            list: sampleAppointments[d],
-            });
+        return Object.keys(groupedAppointments).map((d) => ({
+        date: d,
+        list: groupedAppointments[d],
+        }));
+    };
+
+    const filteredAppointments = getFilteredAppointments();
+
+    // Hàm render màu trạng thái
+    const renderStatusBadge = (status) => {
+        switch (status) {
+        case "Đã khám":
+            return <Badge bg="success">{status}</Badge>;
+        case "Đã huỷ":
+            return <Badge bg="danger">{status}</Badge>;
+        default:
+            return <Badge bg="secondary">{status}</Badge>;
         }
-        });
-    }
+    };
 
     return (
         <div className="container mt-5">
             <Card className="p-4 shadow-sm">
-                <Card.Title className="text-center text-primary mb-4 fs-3">Manage examination schedule</Card.Title>
+                <Card.Title className="text-center text-primary mb-4 fs-3">Manage Examination Schedule</Card.Title>
                 <div className="text-center mb-3">
                     <ButtonGroup>
-                        <Button variant={view === "day" ? "primary" : "outline-primary"}  onClick={() => setView("day")}>Day</Button>
+                        <Button variant={view === "day" ? "primary" : "outline-primary"} onClick={() => setView("day")}>Day</Button>
                         <Button variant={view === "week" ? "primary" : "outline-primary"} onClick={() => setView("week")}>Week</Button>
                         <Button variant={view === "month" ? "primary" : "outline-primary"} onClick={() => setView("month")}>Month</Button>
                     </ButtonGroup>
@@ -78,38 +55,39 @@ export default function DoctorAppointments() {
                     <Form.Label className="fw-semibold">Select date</Form.Label>
                     <Form.Control type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} style={{ maxWidth: "250px", margin: "0 auto" }}/>
                 </Form.Group>
-                <h5 className="text-center mb-3">View mode:{" "}
-                    <span className="text-success text-capitalize">{view}</span>
-                </h5>
                 {filteredAppointments.length > 0 ? (
-                filteredAppointments.map((day, i) => (
-                    <div key={i} className="mb-3">
-                        <h6 className="fw-bold text-primary">{day.date}</h6>
-                        {day.list.length > 0 ? (
-                            <ListGroup>
-                                {day.list.map((appt, idx) => (
-                                    <ListGroup.Item key={idx} className="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <strong>{appt.time}</strong> - {appt.patient}
-                                        </div>
-                                        <span className="text-muted">{appt.reason}</span>
-                                    </ListGroup.Item>
-                                ))}
-                            </ListGroup>
-                        ) : (
-                            <p className="text-muted ms-3">No appointments available.</p>
-                        )}
-                    </div>
-                ))
+                    filteredAppointments.map((day, i) => (
+                        <div key={i} className="mb-3">
+                            <h6 className="fw-bold text-primary">{day.date}</h6>
+                            {day.list.length > 0 ? (
+                                <ListGroup>
+                                    {day.list.map((appt, idx) => (
+                                        <ListGroup.Item key={idx} className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                            <div>
+                                                <strong>{appt.time}</strong> - {appt.patientName} <br />
+                                                <small className="text-muted">{appt.reason || "No note"}</small>
+                                            </div>
+                                            <div className="d-flex align-items-center gap-2">
+                                                {renderStatusBadge(appt.status)}
+                                                <Form.Select size="sm" style={{ width: "140px" }} value={appt.status} onChange={(e) => updateAppointmentStatus(appt.id, e.target.value)}>
+                                                    <option>Haven't examined yet</option>
+                                                    <option>Examined</option>
+                                                    <option>Canceled</option>
+                                                </Form.Select>
+                                            </div>
+                                        </ListGroup.Item>
+                                    ))}
+                                </ListGroup>
+                            ) : (
+                                <p className="text-muted ms-3">No appointments available.</p>
+                            )}
+                        </div>
+                    ))
                 ) : (
-                <p className="text-center text-muted">
-                    There are no appointments in the selected range.
-                </p>
+                <p className="text-center text-muted">No appointments for selected date.</p>
                 )}
                 <div className="text-center mt-4">
-                    <Button variant="secondary" onClick={() => navigate("/doctor/dashboard")}>
-                        ⬅ Back to Doctor Dashboard
-                    </Button>
+                    <Button variant="secondary" onClick={() => navigate("/doctor/dashboard")}>⬅ Back to Doctor Dashboard</Button>
                 </div>
             </Card>
         </div>
