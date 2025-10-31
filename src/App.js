@@ -8,67 +8,20 @@ import Login from './Page/Login';
 import Register from './Page/Register';
 import Footer from './Components/Footer';
 import { AuthProvider } from './Context/Context';
-import Dashboard from './admin/Dashboard';
-import CityManager from './admin/CityManager';
-import DoctorManager from './admin/DoctorManager';
-import PatientManager from './admin/PatientManager';
-import UserManager from './admin/UserManager';
-import ContentManager from './admin/ContentManager';
-
 function App() {
   return (
     <AuthProvider>
       <div className="App">
-        <Routes>
-          {/* Public routes */}
-          <Route path="/" element={
-            <>
-              <Header />
-              <main>
-                <div className="container">
-                  <HomePage />
-                </div>
-              </main>
-              <Footer />
-            </>
-          } />
-          
-          <Route path="/login" element={
-            <>
-              <Header />
-              <main>
-                <div className="container">
-                  <Login />
-                </div>
-              </main>
-              <Footer />
-            </>
-          } />
-          
-          <Route path="/register" element={
-            <>
-              <Header />
-              <main>
-                <div className="container">
-                  <Register />
-                </div>
-              </main>
-              <Footer />
-            </>
-          } />
-
-          {/* Admin routes */}
-          <Route element={<ProtectedRoute requiredRoles={["admin"]} />}>
-            <Route path="/admin" element={<AdminDashboard />}>
-              <Route index element={<Dashboard />} />
-              <Route path="cities" element={<CityManager />} />
-              <Route path="doctors" element={<DoctorManager />} />
-              <Route path="patients" element={<PatientManager />} />
-              <Route path="users" element={<UserManager />} />
-              <Route path="content" element={<ContentManager />} />
-            </Route>
-          </Route>
-        </Routes>
+        <Header/>
+        <main>
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<HomePage/>} />
+              <Route path="/login" element={<Login/>} />
+              <Route path="/register" element={<Register/>} />
+            </Routes>
+          </div>
+        </main>
       </div>
     </AuthProvider>
   );

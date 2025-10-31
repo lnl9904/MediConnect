@@ -5,6 +5,7 @@ import AuthContext from "../Context/Context";
 
 export default function Header() {
   const { user, role, logout } = useContext(AuthContext);
+  
   return (
     <Navbar bg="light" expand="lg" className="shadow-sm sticky-top">
       <Container>
@@ -16,7 +17,6 @@ export default function Header() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/" className="text-primary fw-medium">Home</Nav.Link>
             <Nav.Link as={Link} to="/doctors" className="text-primary fw-medium">Doctors</Nav.Link>
-            <Nav.Link as={Link} to="/appointments" className="text-primary fw-medium">Make an appointment</Nav.Link>
             <Nav.Link as={Link} to="/articles" className="text-primary fw-medium">News</Nav.Link>
             <Nav.Link as={Link} to="/contact" className="text-primary fw-medium">Contact</Nav.Link>
           </Nav>
@@ -24,9 +24,9 @@ export default function Header() {
             {user ? (
               <>
                 <span className="me-3 fw-semibold text-primary">
-                  Hello, {user.fullName}
+                 Hello,&nbsp;{user.fullName ? user.fullName : user.firstName || user.lastName ? `${user.firstName || ""} ${user.lastName || ""}`.trim() : user.name || user.email}
                 </span>
-                <NavDropdown title="Tài khoản" id="user-dropdown" align="end">
+                <NavDropdown title="Account" id="user-dropdown" align="end">
                   {role === "admin" && (
                     <>
                       <NavDropdown.Item as={Link} to="/admin">Admin page</NavDropdown.Item>
@@ -49,7 +49,7 @@ export default function Header() {
                   <NavDropdown.Item onClick={logout} className="text-danger">Log out</NavDropdown.Item>
                 </NavDropdown>
               </>
-            ) : (
+              ) : (
               <>
                 <Button as={Link} to="/login" variant="outline-primary" className="ms-3">Login</Button>
                 <Button as={Link} to="/register" variant="primary" className="ms-2">Register</Button>

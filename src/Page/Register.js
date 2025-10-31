@@ -21,9 +21,7 @@ export default function Register() {
         };
         console.log("Đăng ký:", newUser);
         setSuccess(true); // bật thông báo thành công
-        // Auto-login as patient and redirect to home
-        login({ email, fullName: name }, 'patient');
-        setTimeout(() => navigate("/"), 800);
+        setTimeout(() => navigate("/login"), 2000); // chuyển sang login sau 2s
     };
     return (
         <Container className="mt-5" style={{ maxWidth: "450px" }}>
