@@ -155,10 +155,16 @@ export default function ConfirmAppointmentPage() {
       setIsProcessing(false);
       setIsPaid(true);
 
+      // 🧩 Log kiểm tra dữ liệu bác sĩ
+console.log("🧑‍⚕️ Doctor data when booking:", doctor);
+
+// Nếu doctor.id bị undefined thì fallback sang email hoặc name
+const doctorIdValue = doctor?.id || doctor?.doctorId || doctor?.email || doctor?.name;
+
       //Lấy thông tin bệnh nhân chính xác
       const appt = {
         id: Date.now(),
-        doctorId: doctor?.id,
+        doctorId: doctorIdValue, /////////////////
         doctor: doctor?.name,
         specialty: doctor?.specialty,
         hospital: doctor?.hospital,

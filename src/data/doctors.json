@@ -328,5 +328,27 @@
     "hospital": "MediConnect",
     "degree": "Doctor of Philosophy in Medicine (PhD)",
     "image": "https://randomuser.me/api/portraits/men/77.jpg"
-  }
+  },
+  {
+  "id": 31,
+  "specialtyId": 1,
+  "name": "Dr. Style Tran",
+  "email": "doctor31@gmail.com",
+  "password": "12345",
+  "specialty": "Orthopedics",
+  "hospital": "MediConnect",
+  "degree": "Doctor of Medicine (MD)",
+  "image": "https://randomuser.me/api/portraits/women/68.jpg"
+},
+{
+  "id": 32,
+  "specialtyId": 4,
+  "name": "Dr. Gucci Nguyen",
+  "email": "doctor32@gmail.com",
+  "password": "12345",
+  "specialty": "Cardiology",
+  "hospital": "MediConnect",
+  "degree": "Doctor of Medicine (MD)",
+  "image": "https://randomuser.me/api/portraits/men/62.jpg"
+}
 ]

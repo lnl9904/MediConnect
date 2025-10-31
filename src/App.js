@@ -27,6 +27,9 @@ import Contacts from './Page/Contacts';
 import WhyUs from './Page/WhyUs';
 import DoctorsIntro from './Page/DoctorIntro';
 import AdvicePage from './Page/AdvicePage';
+import HomeExamination from "./Page/Services/HomeExamination";
+import NutritionConsulting from "./Page/Services/NutritionConsulting";
+
 function App() {
   return (
     <AuthProvider>
@@ -59,6 +62,8 @@ function App() {
                   <Route path="/why-us" element={<WhyUs/>} />
                   <Route path="/doctorintro" element={<DoctorsIntro/>} />
                   <Route path="/advicepage" element={<AdvicePage/>} />
+                  <Route path="/service/1" element={<HomeExamination />} />
+                  <Route path="/service/2" element={<NutritionConsulting />} />
                 </Routes>
               </div>
             </main>

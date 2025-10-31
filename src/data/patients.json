@@ -7,7 +7,7 @@
         "email": "linh@gmail.com",
         "password": "123456",
         "phone": "0901234567",
-        "gender": "male",
+        "gender": "female",
         "dob": "2003-05-18"
     },
     {
@@ -29,7 +29,7 @@
         "email": "Be@gmail.com",
         "password": "abc12345",
         "phone": "09876543216",
-        "gender": "female",
+        "gender": "male",
         "dob": "2005-08-25"
     },
     {
@@ -40,7 +40,7 @@
         "email": "Coder@gmail.com",
         "password": "abc12398",
         "phone": "0987654321846",
-        "gender": "female",
+        "gender": "male",
         "dob": "2000-07-25"
     }
 ]

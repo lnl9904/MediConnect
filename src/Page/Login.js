@@ -34,6 +34,7 @@ export default function Login() {
 
         const doctorData = {
             id: foundDoctor.id,
+            doctorId: foundDoctor.id,
             fullName: foundDoctor.name,
             email: foundDoctor.email,
             role: "doctor",
