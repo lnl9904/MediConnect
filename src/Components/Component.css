@@ -1,28 +1,24 @@
+/* --- Banner --- */
 .banner-homepage {
   position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   overflow: hidden;
-}
-
+  }
 .banner-slider {
   width: 100%;
   overflow: hidden;
 }
-
 .slide {
   position: relative;
   width: 100%;
 }
-
 .banner-image {
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
 }
-
-/* --- Text Banner --- */
 .banner-content {
   position: absolute;
   top: 0;
@@ -35,29 +31,23 @@
   flex-direction: column;
   background: rgba(0, 0, 0, 0.35);
 }
-
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 2rem;
 }
-
 .text-banner {
   text-align: center;
   margin-bottom: 2rem;
 }
-
 .title-banner {
   font-size: 2.2rem;
   font-weight: 700;
 }
-
 .text-banner p {
   font-size: 1.1rem;
   opacity: 0.9;
 }
-
-/* --- Responsive --- */
 @media (max-width: 768px) {
   .title-banner {
     font-size: 1.6rem;
@@ -66,3 +56,50 @@
     font-size: 1rem;
   }
 }
+/*---Footer---*/
+footer {
+  background: #f0efef;
+  color: rgb(13, 110, 253);
+  padding: 3rem 2rem 1rem;
+  text-align: center;
+}
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.footer-section h3 {
+  color: #4fd1c5;
+  margin-bottom: 1rem;
+}
+.footer-links {
+  list-style: none;
+}
+.footer-links a {
+  color: #0D6EFD;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover {
+  color: #eeee57;
+}
+.copyright {
+  border-top: 1px solid #0D6EFD;
+  padding-top: 1rem;
+  margin-top: 2rem;
+  color: #0D6EFD;
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+ }

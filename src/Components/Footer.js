@@ -1,12 +1,14 @@
 import React from 'react';
-import '../style/footer.css'; // Optional: for styling
+import '../style/footer.css'; // Đảm bảo file này tồn tại đúng đường dẫn
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
         <FooterSection title="MediConnect">
-          <p>Your trusted partner in advanced medical care and regenerative medicine since 2017.</p>
+          <p>
+            Your trusted partner in advanced medical care and regenerative medicine since 2017.
+          </p>
         </FooterSection>
 
         <FooterSection title="Quick Links">
@@ -41,6 +43,7 @@ const Footer = () => {
   );
 };
 
+// Component con: FooterSection
 const FooterSection = ({ title, children }) => (
   <div className="footer-section">
     <h3>{title}</h3>
