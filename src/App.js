@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from "./Components/ScrollToTop";
@@ -6,6 +5,7 @@ import HomePage from './Page/HomePage';
 import Header from './Components/Header';
 import Login from './Page/Login';
 import Register from './Page/Register';
+import Footer from './Components/Footer';
 import { AuthProvider } from './Context/Context';
 import { AppointmentProvider } from "./Context/AppointmentContext";
 import { NotificationProvider } from "./Context/NotificationContext";
@@ -22,7 +22,6 @@ import SpecialtyDoctors from "./Page/SpecialtyDoctors";
 import SpecialtySection from './Components/SpecialtySection';
 import NewsPage from './Page/NewsPage';
 import NewsDetailPage from './Page/NewsDetailPage';
-import Footer from './Components/Footer';
 import AboutUs from './Page/AboutUs';
 import Contacts from './Page/Contacts';
 import WhyUs from './Page/WhyUs';
@@ -34,18 +33,18 @@ function App() {
       <NotificationProvider>
         <AppointmentProvider>
           <div className="App">
-            <Header/>
+            <Header />
             <main>
               <div className="container">
                 <ScrollToTop />
                 <Routes>
-                  <Route path="/" element={<HomePage/>} />
-                  <Route path="/login" element={<Login/>} />
-                  <Route path="/register" element={<Register/>} />
-                  <Route path="/doctor/dashboard" element={<DoctorDashboard/>}/>
-                  <Route path="/doctor/profile" element={<DoctorProfile/>}/>
-                  <Route path="/doctor/appointments" element={<DoctorAppointments/>}/>
-                  <Route path="/doctor/notifications" element={<DoctorNotifications/>} />
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
+                  <Route path="/doctor/profile" element={<DoctorProfile />} />
+                  <Route path="/doctor/appointments" element={<DoctorAppointments />} />
+                  <Route path="/doctor/notifications" element={<DoctorNotifications />} />
                   <Route path="/doctors" element={<AllDoctorsPage />} />
                   <Route path="/doctor/:id" element={<DoctorDetailPage />} />
                   <Route path="/confirm-appointment" element={<ConfirmAppointmentPage />} />
@@ -63,11 +62,12 @@ function App() {
                 </Routes>
               </div>
             </main>
-            <Footer/>
+            <Footer />
           </div>
         </AppointmentProvider>
       </NotificationProvider>
     </AuthProvider>
   );
 }
+
 export default App;

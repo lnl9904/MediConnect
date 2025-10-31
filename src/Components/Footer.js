@@ -36,6 +36,7 @@ const Footer = () => {
     );
 };
 
+// Component con: FooterSection
 const FooterSection = ({ title, children }) => (
   <div className="footer-section">
     <h3>{title}</h3>

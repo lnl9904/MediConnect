@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../Context/Context";
 
 export default function Register() {
     const [name, setName] = useState("");
@@ -8,6 +9,7 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
     const handleCancel = () => navigate("/");
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,8 +20,8 @@ export default function Register() {
             role: "patient",
         };
         console.log("Đăng ký:", newUser);
-        setSuccess(true);
-        setTimeout(() => navigate("/login"), 2000);
+        setSuccess(true); // bật thông báo thành công
+        setTimeout(() => navigate("/login"), 2000); // chuyển sang login sau 2s
     };
     return (
         <Container className="mt-5" style={{ maxWidth: "450px" }}>
