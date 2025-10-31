@@ -21,41 +21,45 @@ import SpecialtyDoctors from "./Page/SpecialtyDoctors";
 import SpecialtySection from './Components/SpecialtySection';
 import NewsPage from './Page/NewsPage';
 import NewsDetailPage from './Page/NewsDetailPage';
+import Footer from './Components/Footer';
+import AboutUs from './Page/AboutUs';
+import Contacts from './Page/Contacts';
 function App() {
   return (
     <AuthProvider>
       <NotificationProvider>
-      <AppointmentProvider>
-        <div className="App">
-          <Header/>
-          <main>
-            <div className="container">
-              <Routes>
-                <Route path="/" element={<HomePage/>} />
-                <Route path="/login" element={<Login/>} />
-                <Route path="/register" element={<Register/>} />
-                <Route path="/doctor/dashboard" element={<DoctorDashboard/>}/>
-                <Route path="/doctor/profile" element={<DoctorProfile/>}/>
-                <Route path="/doctor/appointments" element={<DoctorAppointments/>}/>
-                <Route path="/doctor/notifications" element={<DoctorNotifications/>} />
-                <Route path="/doctors" element={<AllDoctorsPage />} />
-                <Route path="/doctor/:id" element={<DoctorDetailPage />} />
-                <Route path="/confirm-appointment" element={<ConfirmAppointmentPage />} />
-                <Route path="/patient/profile" element={<PatientProfile />} />
-                <Route path="/patient/appointments" element={<MyAppointments />} />
-                <Route path="/specialties" element={<SpecialtySection />} />
-                <Route path="/specialty/:id" element={<SpecialtyDoctors />} />
-                <Route path="/articles" element={<NewsPage />} />
-                <Route path="/news/:id" element={<NewsDetailPage />} />
-
-              </Routes>
-            </div>
-          </main>
-        </div>
-      </AppointmentProvider>
+        <AppointmentProvider>
+          <div className="App">
+            <Header/>
+            <main>
+              <div className="container">
+                <Routes>
+                  <Route path="/" element={<HomePage/>} />
+                  <Route path="/login" element={<Login/>} />
+                  <Route path="/register" element={<Register/>} />
+                  <Route path="/doctor/dashboard" element={<DoctorDashboard/>}/>
+                  <Route path="/doctor/profile" element={<DoctorProfile/>}/>
+                  <Route path="/doctor/appointments" element={<DoctorAppointments/>}/>
+                  <Route path="/doctor/notifications" element={<DoctorNotifications/>} />
+                  <Route path="/doctors" element={<AllDoctorsPage />} />
+                  <Route path="/doctor/:id" element={<DoctorDetailPage />} />
+                  <Route path="/confirm-appointment" element={<ConfirmAppointmentPage />} />
+                  <Route path="/patient/profile" element={<PatientProfile />} />
+                  <Route path="/patient/appointments" element={<MyAppointments />} />
+                  <Route path="/specialties" element={<SpecialtySection />} />
+                  <Route path="/specialty/:id" element={<SpecialtyDoctors />} />
+                  <Route path="/articles" element={<NewsPage />} />
+                  <Route path="/news/:id" element={<NewsDetailPage />} />
+                  <Route path="/about" element={<AboutUs />} />
+                  <Route path="/contact" element={<Contacts/>} />
+                </Routes>
+              </div>
+            </main>
+            <Footer/>
+          </div>
+        </AppointmentProvider>
       </NotificationProvider>
     </AuthProvider>
   );
 }
-
 export default App;
