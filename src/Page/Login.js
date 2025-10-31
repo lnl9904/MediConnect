@@ -2,15 +2,16 @@ import { useState, useContext } from "react";
 import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../Context/Context";
-import doctorsData from "../data/doctors.json"; // Import dữ liệu bác sĩ từ file JSON
- import patients from "../data/patients.json";
+import doctorsData from "../data/doctors.json"; 
+import patients from "../data/patients.json";
+import "./Page.css";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [role, setRole] = useState("patient");
     const [fullName, setFullName] = useState("");
-    const [error, setError] = useState(""); // State để lưu thông báo lỗi
+    const [error, setError] = useState(""); 
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -37,12 +38,10 @@ export default function Login() {
             email: foundDoctor.email,
             role: "doctor",
         };
-
         login(doctorData, "doctor");
         navigate("/doctor/dashboard");
         return;
     }
-
         //Nếu đăng nhập là bệnh nhân
         if (role === "patient") {
             const foundPatient = patients.find(
@@ -86,8 +85,8 @@ export default function Login() {
     };
     return (
        <Container className="mt-5" style={{ maxWidth: "450px" }}>
-            <Card className="p-4 shadow text-start">
-                <h3 className="text-center mb-4 text-primary">Login</h3>
+            <Card className="p-4 shadow text-start login-card">
+                <h3 className="text-center mb-4 text-primary fade-in">Login</h3>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Full name</Form.Label>

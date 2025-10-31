@@ -1,37 +1,36 @@
 import React from 'react';
 import './Component.css';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
                 <FooterSection title="MediConnect">
-                    <p>Your trusted partner in advanced medical care and regenerative medicine since 2017.</p>
+                    <p>Your trusted partner in advanced medical care.</p>
                 </FooterSection>
-                <FooterSection title="Quick Links">
+                <FooterSection title="About MediConnect">
                     <ul className="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Our Services</a></li>
-                        <li><a href="#why-us">Why Choose Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><Link to="/about">About Us</Link></li>
+                        <li><Link to="/why-us">Why Choose Us</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
                     </ul>
                 </FooterSection>
-                <FooterSection title="Services">
+                <FooterSection title="Customer Support">
                     <ul className="footer-links">
-                        <li><a href="#">Stem Cell Therapy</a></li>
-                        <li><a href="#">Medical Tourism</a></li>
-                        <li><a href="#">Consultations</a></li>
-                        <li><a href="#">Wellness Programs</a></li>
+                        <li><Link to="/articles">About health</Link></li>
+                        <li><Link to="/doctorintro">About our medical team</Link></li>
+                        <li><Link to="/advicepage">You need advice</Link></li>
                     </ul>
                 </FooterSection>
                 <FooterSection title="Contact Info">
                     <p>📧 info@MediConnect.health</p>
                     <p>📱 +1 (555) 123-4567</p>
-                    <p>📍 Medical District, Healthcare City</p>
+                    <p>📍 000 Nguyen Van Linh Street, District 7, Ho Chi Minh City, Viet Nam</p>
                 </FooterSection>
             </div>
             <div className="copyright">
-                <p>&copy; 2025 MediConnect. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p> &copy;2025 Copyright of MediConnect - Do not copy in any form</p>
             </div>
         </footer>
     );

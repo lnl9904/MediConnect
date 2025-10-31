@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import ScrollToTop from "./Components/ScrollToTop";
 import HomePage from './Page/HomePage';
 import Header from './Components/Header';
 import Login from './Page/Login';
@@ -24,6 +25,9 @@ import NewsDetailPage from './Page/NewsDetailPage';
 import Footer from './Components/Footer';
 import AboutUs from './Page/AboutUs';
 import Contacts from './Page/Contacts';
+import WhyUs from './Page/WhyUs';
+import DoctorsIntro from './Page/DoctorIntro';
+import AdvicePage from './Page/AdvicePage';
 function App() {
   return (
     <AuthProvider>
@@ -33,6 +37,7 @@ function App() {
             <Header/>
             <main>
               <div className="container">
+                <ScrollToTop />
                 <Routes>
                   <Route path="/" element={<HomePage/>} />
                   <Route path="/login" element={<Login/>} />
@@ -52,6 +57,9 @@ function App() {
                   <Route path="/news/:id" element={<NewsDetailPage />} />
                   <Route path="/about" element={<AboutUs />} />
                   <Route path="/contact" element={<Contacts/>} />
+                  <Route path="/why-us" element={<WhyUs/>} />
+                  <Route path="/doctorintro" element={<DoctorsIntro/>} />
+                  <Route path="/advicepage" element={<AdvicePage/>} />
                 </Routes>
               </div>
             </main>

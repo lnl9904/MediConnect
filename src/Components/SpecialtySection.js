@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
-
+import "./Component.css";
 const specialties = [
   { id: 1, name: "Orthopedics", icon: "https://cdn.bookingcare.vn/fo/w128/2023/12/26/101627-co-xuong-khop.png" },
   { id: 2, name: "Neurology", icon: "https://cdn.bookingcare.vn/fo/2023/12/26/101739-than-kinh.png" },
@@ -14,14 +14,14 @@ const specialties = [
 export default function SpecialtySection() {
   const navigate = useNavigate();
   return (
-    <div className="container my-5">
+    <div className="specialty-section container my-5">
       <h2 className="fw-bold text-primary mb-4">Specialized Medical Departments</h2>
       <div className="row g-4">
         {specialties.map((s) => (
           <div key={s.id} className="col-6 col-md-4 col-lg-2 text-center">
-            <div className="card shadow-sm p-3 h-100" style={{ cursor: "pointer" }} onClick={() => navigate(`/specialty/${s.id}`)}>
-              <img src={s.icon} alt={s.name} className="img-fluid mb-2" />
-              <h6 className="fw-bold">{s.name}</h6>
+            <div className="specialty-card h-100" style={{ cursor: "pointer" }} onClick={() => navigate(`/specialty/${s.id}`)}>
+              <img src={s.icon} alt={s.name} />
+              <h6>{s.name}</h6>
             </div>
           </div>
         ))}
