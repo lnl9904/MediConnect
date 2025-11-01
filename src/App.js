@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react';
+import { initMockData } from './utils/initMockData';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from "./Components/ScrollToTop";
