@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AuthContext from "../Context/Context";
+import "../Styles/Header.css";
 
 export default function Header() {
   const { user, role, logout } = useContext(AuthContext);
