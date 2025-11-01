@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { marked } from "marked";
 import newsDataRaw from "../data/news.json";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Page.css";
 
 export default function NewsDetailPage() {
     const { id } = useParams();
@@ -32,7 +31,6 @@ export default function NewsDetailPage() {
     }
 
     return (
-        <div className="news-detail-page fade-in">
         <div className="container my-5" style={{ maxWidth: 980 }}>
             <button className="btn btn-outline-secondary mb-4" onClick={() => navigate(-1)}>← Back</button>
             <img src={article.image} alt={article.title} className="img-fluid rounded mb-4 shadow-sm" style={{ width: "100%", maxHeight: 460, objectFit: "cover" }} referrerPolicy="no-referrer" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://placehold.co/1200x600?text=News+Image";}}/>
@@ -50,7 +48,6 @@ export default function NewsDetailPage() {
                 <button className="btn btn-outline-primary" onClick={() => navigate("/articles")}>← Back to News</button>
             </div>
             <hr className="mt-4" />
-        </div>
         </div>
     );
 }

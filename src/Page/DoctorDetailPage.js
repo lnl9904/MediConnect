@@ -1,22 +1,20 @@
+
 import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import doctorsData from "../data/doctors.json";
 import AuthContext from "../Context/Context";
 import AppointmentContext from "../Context/AppointmentContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
 
 function DoctorDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { appointments, addAppointment } = useContext(AppointmentContext) || {};
-  const [doctors, setDoctors] = useState(() => {
-    return JSON.parse(localStorage.getItem('doctors')) || [];
-  });
+  const { appointments, addAppointment } = useContext(AppointmentContext);
 
-  const doctor = doctors.find((doc) => doc.id === parseInt(id));
+  const doctor = doctorsData.find((doc) => doc.id === parseInt(id));
 
   // Tạo ngày hôm nay
   const today = new Date();
@@ -110,59 +108,57 @@ function DoctorDetailPage() {
   };
 
   return (
-    <div className="doctor-detail-page fade-in">
-      <div className="container my-5">
-        <button className="btn btn-outline-secondary mb-3" onClick={() => navigate(-1)}>← Back</button>
-        <div className="card shadow-sm p-4">
-          <div className="row align-items-center">
-            <div className="col-md-3 text-center">
-              <img src={doctor.image} alt={doctor.name} className="img-fluid rounded"style={{ maxHeight: "220px", objectFit: "cover" }}/>
-            </div>
-            <div className="col-md-9">
-              <h3 className="fw-bold text-primary">{doctor.name}</h3>
-              <p className="mb-1">{doctor.specialty}</p>
-              <p className="text-muted">{doctor.hospital}</p>
-              <p>
-                <strong>Clinical Experience:</strong> Over 15 years ofprofessional medical practice.</p>
-              <p><strong>Location:</strong> Ho Chi Minh City, Vietnam</p>
-            </div>
+    <div className="container my-5">
+      <button className="btn btn-outline-secondary mb-3" onClick={() => navigate(-1)}>← Back</button>
+      <div className="card shadow-sm p-4">
+        <div className="row align-items-center">
+          <div className="col-md-3 text-center">
+            <img src={doctor.image} alt={doctor.name} className="img-fluid rounded"style={{ maxHeight: "220px", objectFit: "cover" }}/>
           </div>
-          <hr />
-          {/* --- Chọn ngày khám --- */}
-          <h5 className="fw-bold mt-3 mb-2 text-center">Select Appointment Date</h5>
-          <div className="mb-4 d-flex justify-content-center">
-            <div className="input-group" style={{ maxWidth: "300px" }}>
-              <span className="input-group-text bg-primary text-white">📅</span>
-              <DatePicker selected={new Date(selectedDate)}
-                onChange={(date) => {const formatted = date.toISOString().split("T")[0]; setSelectedDate(formatted); setSelectedTime(null);}}
-                dateFormat="yyyy-MM-dd" minDate={new Date()}
-                maxDate={ new Date(new Date().setDate(new Date().getDate() + 30))}
-                className="form-control text-center" placeholderText="Choose appointment date"/>
-            </div>
+          <div className="col-md-9">
+            <h3 className="fw-bold text-primary">{doctor.name}</h3>
+            <p className="mb-1">{doctor.specialty}</p>
+            <p className="text-muted">{doctor.hospital}</p>
+            <p>
+              <strong>Clinical Experience:</strong> Over 15 years ofprofessional medical practice.</p>
+            <p><strong>Location:</strong> Ho Chi Minh City, Vietnam</p>
           </div>
-          <small className="text-muted d-block text-center">You can book an appointment up to 30 days in advance.</small>
-          {/* --- Chọn khung giờ --- */}
-          <h5 className="fw-bold mt-3 mb-2">Select Time Slot</h5>
-          <div className="d-flex flex-wrap gap-2 mb-4">
-            {scheduleTimes.map((time, index) => {
-              const count = slotCounts[time] || 0;
-              const isFull = count >= 5;
-              return (
-                <button key={index} className={`btn ${isFull ? "btn-secondary" : selectedTime === time ? "btn-primary" : "btn-outline-primary"}`}
-                  onClick={() => !isFull && setSelectedTime(time)} disabled={isFull}>
-                  {time}{" "} {isFull ? "❌ Full" : count > 0 ? `(${count}/5)` : ""}
-                </button>
-              );
-            })}
+        </div>
+        <hr />
+        {/* --- Chọn ngày khám --- */}
+        <h5 className="fw-bold mt-3 mb-2 text-center">Select Appointment Date</h5>
+        <div className="mb-4 d-flex justify-content-center">
+          <div className="input-group" style={{ maxWidth: "300px" }}>
+            <span className="input-group-text bg-primary text-white">📅</span>
+            <DatePicker selected={new Date(selectedDate)}
+              onChange={(date) => {const formatted = date.toISOString().split("T")[0]; setSelectedDate(formatted); setSelectedTime(null);}}
+              dateFormat="yyyy-MM-dd" minDate={new Date()}
+              maxDate={ new Date(new Date().setDate(new Date().getDate() + 30))}
+              className="form-control text-center" placeholderText="Choose appointment date"/>
           </div>
-          {/* --- Thông tin tóm tắt --- */}
-          <div className="border-top pt-3">
-            <p><strong>Selected Date:</strong> {selectedDate}</p>
-            <p><strong>Selected Time:</strong>{" "} {selectedTime || "No time selected"}</p>
-            <p><strong>Clinic Address:</strong> {doctor.hospital}</p>
-            <p><strong>Consultation Fee:</strong> 100$</p>
-            <button className="btn btn-success" disabled={!selectedDate || !selectedTime} onClick={handleConfirmAppointment}>Confirm Appointment</button>
-          </div>
+        </div>
+        <small className="text-muted d-block text-center">You can book an appointment up to 30 days in advance.</small>
+        {/* --- Chọn khung giờ --- */}
+        <h5 className="fw-bold mt-3 mb-2">Select Time Slot</h5>
+        <div className="d-flex flex-wrap gap-2 mb-4">
+          {scheduleTimes.map((time, index) => {
+            const count = slotCounts[time] || 0;
+            const isFull = count >= 5;
+            return (
+              <button key={index} className={`btn ${isFull ? "btn-secondary" : selectedTime === time ? "btn-primary" : "btn-outline-primary"}`}
+                onClick={() => !isFull && setSelectedTime(time)} disabled={isFull}>
+                {time}{" "} {isFull ? "❌ Full" : count > 0 ? `(${count}/5)` : ""}
+              </button>
+            );
+          })}
+        </div>
+        {/* --- Thông tin tóm tắt --- */}
+        <div className="border-top pt-3">
+          <p><strong>Selected Date:</strong> {selectedDate}</p>
+          <p><strong>Selected Time:</strong>{" "} {selectedTime || "No time selected"}</p>
+          <p><strong>Clinic Address:</strong> {doctor.hospital}</p>
+          <p><strong>Consultation Fee:</strong> 100$</p>
+          <button className="btn btn-success" disabled={!selectedDate || !selectedTime} onClick={handleConfirmAppointment}>Confirm Appointment</button>
         </div>
       </div>
     </div>

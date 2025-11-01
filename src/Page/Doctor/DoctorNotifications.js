@@ -5,9 +5,8 @@ import NotificationContext from "../../Context/NotificationContext";
 import AuthContext from "../../Context/Context"; 
 
 export default function DoctorNotifications() {
-  console.log("👨‍⚕️ DoctorNotifications loaded");
   const { getDoctorNotifications, markAsRead } = useContext(NotificationContext);
-  const { user } = useContext(AuthContext); 
+  const { user } = useContext(AuthContext); // Lấy user từ context
 
   // Lấy ID thật từ user (khi login là bác sĩ)
   const doctorId = user?.doctorId;

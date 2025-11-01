@@ -2,89 +2,68 @@
   "users": [
     {
       "id": 1,
-      "name": "Admin User",
-      "email": "admin@mediconnect.com",
-      "password": "admin123",
-      "role": "admin",
-      "status": "active"
+      "name": "Nguyễn Văn A",
+      "email": "a@example.com",
+      "password": "hashed_password",
+      "role": "doctor",
+      "phone": "0901234567",
+      "avatar": "https://example.com/avatar1.jpg",
+      "email_verified_at": "2025-10-01T10:00:00Z",
+      "created_at": "2025-09-01T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Trần Thị B",
+      "email": "b@example.com",
+      "password": "hashed_password",
+      "role": "patient",
+      "phone": "0907654321",
+      "avatar": "https://example.com/avatar2.jpg",
+      "email_verified_at": null,
+      "created_at": "2025-09-10T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
     }
   ],
   "specialties": [
     {
       "id": 1,
-      "name": "Orthopedics",
-      "description": "Orthopedic surgery and care"
-    },
-    {
-      "id": 2,
-      "name": "Neurology",
-      "description": "Neurological disorders and treatment"
-    },
-    {
-      "id": 3,
-      "name": "Gastroenterology",
-      "description": "Digestive system disorders"
-    },
-    {
-      "id": 4,
-      "name": "Cardiology",
-      "description": "Heart and cardiovascular care"
-    },
-    {
-      "id": 5,
-      "name": "ENT",
-      "description": "Ear, Nose, and Throat care"
-    },
-    {
-      "id": 6,
-      "name": "Spine Care",
-      "description": "Spine and back treatment"
+      "name": "Tim mạch",
+      "description": "Chuyên khoa về tim và mạch máu",
+      "created_at": "2025-09-01T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
     }
   ],
   "doctors": [
     {
       "id": 1,
-      "specialtyId": 6,
-      "name": "Dr. Alice Nguyen",
-      "email": "doctor1@gmail.com",
-      "password": "12345",
-      "specialty": "Spine Care",
-      "hospital": "MediConnect",
-      "degree": "Doctor of Medicine (MD)",
-      "image": "https://randomuser.me/api/portraits/women/21.jpg",
-      "status": "active"
-    },
-    {
-      "id": 2,
-      "specialtyId": 4,
-      "name": "Dr. David Tran",
-      "email": "doctor2@gmail.com",
-      "password": "12345",
-      "specialty": "Cardiology",
-      "hospital": "MediConnect",
-      "degree": "Doctor of Medicine (MD)",
-      "image": "https://randomuser.me/api/portraits/men/31.jpg",
-      "status": "active"
+      "user_id": 1,
+      "specialty_id": 1,
+      "license_number": "VN123456",
+      "bio": "Bác sĩ chuyên khoa tim mạch với 10 năm kinh nghiệm.",
+      "experience_years": 10,
+      "education": "ĐH Y Hà Nội",
+      "certifications": "Chứng chỉ hành nghề, ACLS",
+      "consultation_fee": 300000.0000,
+      "status": "active",
+      "created_at": "2025-09-01T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
     }
   ],
   "patients": [
     {
       "id": 1,
-      "name": "Emily Johnson",
-      "email": "patient1@gmail.com",
-      "password": "12345",
-      "image": "https://randomuser.me/api/portraits/women/1.jpg",
-      "role": "patient",
-      "status": "active"
-    },
-    {
-      "id": 2,
-      "name": "Michael Smith",
-      "email": "patient2@gmail.com",
-      "password": "12345",
-      "image": "https://randomuser.me/api/portraits/men/2.jpg",
-      "role": "patient",
-      "status": "active"
+      "user_id": 2,
+      "date_of_birth": "1990-05-20",
+      "gender": "Nữ",
+      "blood_group": "O+",
+      "address": "123 Đường ABC, Hà Nội",
+      "emergency_contact": "0912345678",
+      "insurance_number": "BHXH123456",
+      "medical_history": "Tiền sử cao huyết áp",
+      "allergies": "Không",
+      "created_at": "2025-09-10T08:00:00Z",
+      "updated_at": "2025-10-01T10:00:00Z"
     }
   ],
   "appointment_slots": [
@@ -104,8 +83,8 @@
       "id": 1,
       "slot_id": 1,
       "patient_id": 1,
-      "symptoms": "Chest pain, shortness of breath",
-      "notes": "First visit",
+      "symptoms": "Đau ngực, khó thở",
+      "notes": "Khám lần đầu",
       "status": "confirmed",
       "payment_status": "paid",
       "meeting_link": "https://meet.example.com/abc123",
@@ -120,12 +99,12 @@
       "patient_id": 1,
       "doctor_id": 1,
       "appointment_id": 1,
-      "diagnosis": "Myocardial ischemia",
-      "prescription": "Aspirin, vasodilators",
-      "lab_results": "Abnormal ECG",
-      "notes": "Requires further monitoring",
-      "vital_signs": "BP: 140/90, HR: 95",
-      "follow_up_instructions": "Follow-up after one week",
+      "diagnosis": "Thiếu máu cơ tim",
+      "prescription": "Aspirin, thuốc giãn mạch",
+      "lab_results": "ECG bất thường",
+      "notes": "Cần theo dõi thêm",
+      "vital_signs": "Huyết áp: 140/90, Nhịp tim: 95",
+      "follow_up_instructions": "Tái khám sau 1 tuần",
       "next_visit_date": "2025-10-28",
       "created_at": "2025-10-21T08:00:00Z",
       "updated_at": "2025-10-21T08:00:00Z"
@@ -149,60 +128,12 @@
       "id": 1,
       "user_id": 2,
       "type": "appointment",
-      "title": "Appointment Confirmed",
-      "message": "Your appointment with Dr. Alice Nguyen has been confirmed.",
+      "title": "Xác nhận lịch hẹn",
+      "message": "Lịch hẹn với BS. Nguyễn Văn A đã được xác nhận.",
       "data": "{}",
       "is_read": false,
       "read_at": null,
       "created_at": "2025-10-21T09:30:00Z"
-    }
-  ],
-  "contents": [
-    {
-      "id": 1,
-      "title": "Cách phòng ngừa bệnh tim mạch",
-      "category": "Sức khỏe tim mạch",
-      "body": "Bệnh tim mạch là một trong những nguyên nhân hàng đầu gây tử vong trên toàn cầu. Để phòng ngừa hiệu quả, bạn nên: 1. Tập thể dục đều đặn, 2. Ăn uống lành mạnh, 3. Kiểm soát stress...",
-      "image": "https://example.com/images/heart-health.jpg",
-      "published": true,
-      "created_at": "2025-10-01T08:00:00Z",
-      "updated_at": "2025-10-01T08:00:00Z"
-    },
-    {
-      "id": 2,
-      "title": "Dinh dưỡng cho người cao tuổi",
-      "category": "Dinh dưỡng",
-      "body": "Người cao tuổi cần chế độ dinh dưỡng đặc biệt để duy trì sức khỏe. Bài viết này sẽ hướng dẫn chi tiết về: 1. Các nhóm thực phẩm cần thiết, 2. Lượng calo phù hợp, 3. Thời điểm ăn uống...",
-      "image": "https://example.com/images/elderly-nutrition.jpg",
-      "published": true,
-      "created_at": "2025-10-02T09:00:00Z",
-      "updated_at": "2025-10-02T09:00:00Z"
-    },
-    {
-      "id": 3,
-      "title": "Tập luyện cho người bệnh tiểu đường",
-      "category": "Bệnh tiểu đường",
-      "body": "Tập luyện đúng cách giúp kiểm soát đường huyết hiệu quả. Bài viết bao gồm: 1. Các bài tập phù hợp, 2. Thời điểm tập luyện, 3. Lưu ý quan trọng...",
-      "image": "https://example.com/images/diabetes-exercise.jpg",
-      "published": true,
-      "created_at": "2025-10-03T10:00:00Z",
-      "updated_at": "2025-10-03T10:00:00Z"
-    }
-  ],
-  "news": [
-    {
-      "id": 1,
-      "title": "MediConnect Launches Mobile App",
-      "content": "MediConnect announces the launch of its new mobile app, making it easier than ever to book appointments and connect with healthcare providers.",
-      "image": "https://example.com/images/news/mobile-app-launch.jpg",
-      "date": "2025-10-01"
-    },
-    {
-      "id": 2,
-      "title": "New Specialists Join Our Network",
-      "content": "MediConnect welcomes five new specialists to our growing network of healthcare professionals.",
-      "image": "https://example.com/images/news/new-specialists.jpg",
-      "date": "2025-09-28"
     }
   ]
 }

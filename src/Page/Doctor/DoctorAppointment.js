@@ -31,9 +31,9 @@ export default function DoctorAppointments() {
     // Hàm render màu trạng thái
     const renderStatusBadge = (status) => {
         switch (status) {
-        case "Examined":
+        case "Đã khám":
             return <Badge bg="success">{status}</Badge>;
-        case "Canceled":
+        case "Đã huỷ":
             return <Badge bg="danger">{status}</Badge>;
         default:
             return <Badge bg="secondary">{status}</Badge>;

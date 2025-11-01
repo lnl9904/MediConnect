@@ -19,7 +19,6 @@ export default function Header() {
             <Nav.Link as={Link} to="/doctors" className="text-primary fw-medium">Doctors</Nav.Link>
             <Nav.Link as={Link} to="/articles" className="text-primary fw-medium">News</Nav.Link>
             <Nav.Link as={Link} to="/contact" className="text-primary fw-medium">Contact</Nav.Link>
-            <Nav.Link as={Link} to="/about" className="text-primary fw-medium">About us</Nav.Link>
           </Nav>
           <Nav>
             {user ? (

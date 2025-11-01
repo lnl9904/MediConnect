@@ -25,8 +25,7 @@ export default function initMockData() {
     // Ensure all required keys exist
     const requiredKeys = [
       'users', 'doctors', 'patients', 'specialties',
-      'appointments', 'medical_records', 'reviews',
-      'notifications', 'news'
+      'contents', 'cities', 'appointments', 'medical_records'
     ];
 
     requiredKeys.forEach(key => {

@@ -17,18 +17,6 @@ export function NotificationProvider({ children }) {
         localStorage.setItem("notifications", JSON.stringify(notifications));
     }, [notifications]);
 
-    useEffect(() => {
-        const handleStorageChange = (e) => {
-            if (e.key === "notifications") {
-            const updated = e.newValue ? JSON.parse(e.newValue) : [];
-            setNotifications(updated);
-            }
-        };
-
-        window.addEventListener("storage", handleStorageChange);
-        return () => window.removeEventListener("storage", handleStorageChange);
-    }, []);
-
     const addNotification = (notification) => {
         const withId = { id: Date.now(), read: false, ...notification };
         setNotifications((prev) => [withId, ...prev]);

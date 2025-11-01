@@ -1,5 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
-import NotificationContext from "./NotificationContext";
+import React, { createContext, useState, useEffect } from "react";
 
 const AppointmentContext = createContext();
 
@@ -9,25 +8,10 @@ export const AppointmentProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : [];
   });
 
-  const { addNotification } = useContext(NotificationContext);
-
   // Đồng bộ dữ liệu với localStorage
   useEffect(() => {
     localStorage.setItem("appointments", JSON.stringify(appointments));
   }, [appointments]);
-
-  // đồng bộ khi có thay đổi từ tab bệnh nhân 
-  useEffect(() => {
-    const handleStorageChange = (e) => {
-      if (e.key === "appointments") {
-        const updated = e.newValue ? JSON.parse(e.newValue) : [];
-        setAppointments(updated);
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
 
   // Thêm lịch hẹn (chặn trùng)
   const addAppointment = (appointment) => {
@@ -52,18 +36,6 @@ export const AppointmentProvider = ({ children }) => {
     };
 
     setAppointments((prev) => [...prev, newAppt]);
-
-    // thông báo cho bác sĩ khi có lịch mới
-    try {
-      addNotification({
-        doctorId: appointment.doctorId,
-        type: "booking",
-        message: `🩺 New appointment from ${appointment.patientName} at ${appointment.time} on ${appointment.date}.`,
-      });
-      console.log("Notification sent to doctor:", appointment.doctorId);
-    } catch (error) {
-      console.error("Notification failed:", error);
-    }
   };
 
   // Cập nhật trạng thái lịch hẹn
@@ -82,7 +54,6 @@ export const AppointmentProvider = ({ children }) => {
     <AppointmentContext.Provider
       value={{
         appointments,
-        setAppointments,
         addAppointment,
         updateAppointmentStatus,
         removeAppointment,
