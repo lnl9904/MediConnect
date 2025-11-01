@@ -170,3 +170,67 @@ code {
   border-radius: 8px;
   margin-bottom: 10px;
 }
+
+
+
+/* =========================
+   👨‍⚕️ DOCTOR CARD FULL IMAGE
+========================= */
+.doctor-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ảnh bác sĩ full */
+.doctor-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  object-position: top center;
+  background-color: #f3f7ff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.doctor-card .card-body {
+  text-align: center;
+  padding: 15px 10px;
+  flex-grow: 1;
+}
+
+.doctor-card h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0d6efd;
+  margin-bottom: 4px;
+}
+
+.doctor-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+/* Nút đặt lịch */
+.doctor-card .btn-primary {
+  border-radius: 25px;
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.doctor-card .btn-primary:hover {
+  transform: translateY(-2px);
+}
