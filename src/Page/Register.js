@@ -13,15 +13,39 @@ export default function Register() {
     const handleCancel = () => navigate("/");
     const handleSubmit = (e) => {
         e.preventDefault();
-            const newUser = {
-            name,
-            email,
-            password,
+
+        // Kiểm tra email đã tồn tại chưa
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+        const existingPatients = JSON.parse(localStorage.getItem('patients')) || [];
+        const existingDoctors = JSON.parse(localStorage.getItem('doctors')) || [];
+
+        if (existingUsers.some(user => user.email === email) ||
+            existingPatients.some(patient => patient.email === email) ||
+            existingDoctors.some(doctor => doctor.email === email)) {
+            alert("This email is already registered!");
+            return;
+        }
+
+        // Tạo user mới
+        const newPatient = {
+            id: existingPatients.length + 1,
+            name: name,
+            email: email,
+            password: password,
+            image: `https://randomuser.me/api/portraits/${Math.random() > 0.5 ? 'women' : 'men'}/${Math.floor(Math.random() * 70) + 1}.jpg`,
             role: "patient",
+            status: "active"
         };
-        console.log("Đăng ký:", newUser);
-        setSuccess(true); // bật thông báo thành công
-        setTimeout(() => navigate("/login"), 2000); // chuyển sang login sau 2s
+
+        // Cập nhật localStorage
+        const updatedPatients = [...existingPatients, newPatient];
+        localStorage.setItem('patients', JSON.stringify(updatedPatients));
+
+        setSuccess(true);
+        setTimeout(() => {
+            login(email, password); // Tự động đăng nhập sau khi đăng ký
+            navigate("/");
+        }, 2000);
     };
     return (
         <Container className="mt-5" style={{ maxWidth: "450px" }}>

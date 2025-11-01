@@ -1,29 +1,114 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Table, Badge } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from 'react';
+import { Modal, Button, Form, Table, Badge, Image as RBImage } from 'react-bootstrap';
+import mockData from '../data/mockData.json';
 
 const ContentManager = () => {
   const [contents, setContents] = useState([]);
   const [form, setForm] = useState({
-    title: '', category: '', body: '', published: true
+    title: '', 
+    category: '', 
+    body: '', 
+    published: true,
+    image: ''
   });
   const [editingId, setEditingId] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('contents') || '[]');
-    setContents(stored);
+    // Initialize from mockData if contents don't exist in localStorage
+    const stored = JSON.parse(localStorage.getItem('contents'));
+    if (!stored) {
+      localStorage.setItem('contents', JSON.stringify(mockData.contents));
+      setContents(mockData.contents);
+    } else {
+      setContents(stored);
+    }
   }, []);
 
   const saveToStorage = updated => {
     setContents(updated);
-    localStorage.setItem('contents', JSON.stringify(updated));
+    try {
+      localStorage.setItem('contents', JSON.stringify(updated));
+    } catch (err) {
+      console.error('Failed to save contents to localStorage:', err);
+      // Inform the user and attempt to recover UI state
+      alert('Lưu nội dung thất bại: bộ nhớ trình duyệt đã đầy hoặc ảnh quá lớn. Hãy thử dùng ảnh nhỏ hơn.');
+      // Remove any large image from the form/preview to avoid repeated failures
+      setPreviewImage(null);
+      setForm(prev => ({ ...prev, image: '' }));
+    }
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Compress and convert image to base64 before storing
+    compressImageFile(file, 1024, 0.75)
+      .then(base64 => {
+        // If base64 is still large, warn the user
+        const sizeKB = Math.round((base64.length * (3/4)) / 1024);
+        if (sizeKB > 200) {
+          if (!window.confirm(`Ảnh sau khi nén vẫn lớn (~${sizeKB}KB). Bạn có muốn tiếp tục lưu ảnh này? Hãy cân nhắc dùng ảnh nhỏ hơn.`)) {
+            return;
+          }
+        }
+        setPreviewImage(base64);
+        setForm(prev => ({ ...prev, image: base64 }));
+      })
+      .catch(err => {
+        console.error('Image compression failed:', err);
+        alert('Không thể xử lý ảnh. Vui lòng thử ảnh khác hoặc giảm kích thước ảnh.');
+      });
+  };
+
+  // Compress image using canvas and return base64 string
+  const compressImageFile = (file, maxWidth = 1024, quality = 0.8) => {
+    return new Promise((resolve, reject) => {
+      try {
+        const img = new Image();
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const scale = Math.min(1, maxWidth / img.width);
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            // Try to get compressed JPEG data URL
+            const mime = 'image/jpeg';
+            let dataUrl = canvas.toDataURL(mime, quality);
+            // If still too large and quality can be lowered, try progressively
+            let q = quality;
+            while (dataUrl.length > 500000 && q > 0.4) { // ~500KB threshold
+              q -= 0.1;
+              dataUrl = canvas.toDataURL(mime, q);
+            }
+            resolve(dataUrl);
+          };
+          img.onerror = (e) => reject(e);
+          img.src = ev.target.result;
+        };
+        reader.onerror = (e) => reject(e);
+        reader.readAsDataURL(file);
+      } catch (e) {
+        reject(e);
+      }
+    });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     if (editingId) {
       const updated = contents.map(c =>
-        c.id === editingId ? { ...c, ...form } : c
+        c.id === editingId ? { 
+          ...c, 
+          ...form,
+          updated_at: new Date().toISOString()
+        } : c
       );
       saveToStorage(updated);
       setEditingId(null);
@@ -36,7 +121,8 @@ const ContentManager = () => {
       };
       saveToStorage([...contents, newContent]);
     }
-    setForm({ title: '', category: '', body: '', published: true });
+    setForm({ title: '', category: '', body: '', published: true, image: '' });
+    setPreviewImage(null);
     setShowModal(false);
   };
 
@@ -84,19 +170,29 @@ const ContentManager = () => {
       <Table striped bordered hover responsive>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Tiêu đề</th>
-            <th>Danh mục</th>
+            <th style={{width: "50px"}}>#</th>
+            <th style={{width: "25%"}}>Tiêu đề</th>
+            <th style={{width: "15%"}}>Danh mục</th>
             <th>Nội dung</th>
-            <th>Trạng thái</th>
-            <th>Thao tác</th>
+            <th style={{width: "120px"}}>Trạng thái</th>
+            <th style={{width: "200px"}}>Thao tác</th>
           </tr>
         </thead>
         <tbody>
           {contents.map((content, index) => (
             <tr key={content.id}>
               <td>{index + 1}</td>
-              <td>{content.title}</td>
+              <td>
+                {content.image && (
+                  <RBImage 
+                    src={content.image} 
+                    alt={content.title}
+                    style={{ width: '50px', height: '50px', objectFit: 'cover', marginRight: '10px' }}
+                    rounded
+                  />
+                )}
+                {content.title}
+              </td>
               <td>{content.category}</td>
               <td>
                 <div style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -168,6 +264,47 @@ const ContentManager = () => {
                 onChange={e => setForm({ ...form, body: e.target.value })}
                 required
               />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Hình ảnh</Form.Label>
+              <div className="d-flex align-items-center gap-3">
+                <Button
+                  variant="outline-primary"
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  <i className="bi bi-upload me-2"></i>
+                  Chọn ảnh
+                </Button>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  className="d-none"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
+                {(previewImage || form.image) && (
+                  <div className="position-relative">
+                    <RBImage
+                      src={previewImage || form.image}
+                      alt="Preview"
+                      style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                      rounded
+                    />
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      className="position-absolute top-0 end-0"
+                      onClick={() => {
+                        setPreviewImage(null);
+                        setForm(prev => ({ ...prev, image: '' }));
+                      }}
+                    >
+                      <i className="bi bi-x"></i>
+                    </Button>
+                  </div>
+                )}
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3">

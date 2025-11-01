@@ -1,20 +1,23 @@
 
 import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import doctorsData from "../data/doctors.json";
 import AuthContext from "../Context/Context";
 import AppointmentContext from "../Context/AppointmentContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
 
 function DoctorDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const { appointments, addAppointment } = useContext(AppointmentContext);
+  const { appointments, addAppointment } = useContext(AppointmentContext) || {};
+  const [doctors, setDoctors] = useState(() => {
+    return JSON.parse(localStorage.getItem('doctors')) || [];
+  });
 
-  const doctor = doctorsData.find((doc) => doc.id === parseInt(id));
+  const doctor = doctors.find((doc) => doc.id === parseInt(id));
 
   // Tạo ngày hôm nay
   const today = new Date();
