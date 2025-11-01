@@ -1,354 +1,332 @@
 [
   {
     "id": 1,
-    "specialtyId": 6,
     "name": "Dr. Alice Nguyen",
     "email": "doctor1@gmail.com",
     "password": "12345",
     "specialty": "Spine Care",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/21.jpg"
+    "gender": "female",
+    "image": "../img/doctor/1.jpg"
   },
   {
     "id": 2,
-    "specialtyId": 4,
     "name": "Dr. David Tran",
     "email": "doctor2@gmail.com",
     "password": "12345",
     "specialty": "Cardiology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/men/31.jpg"
+    "gender": "male",
+    "image": "../img/doctor/1.png"
   },
   {
     "id": 3,
-    "specialtyId": 4,
     "name": "Dr. Emily Le",
     "email": "doctor3@gmail.com",
     "password": "12345",
     "specialty": "Cardiology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/32.jpg"
+    "gender": "female",
+    "image": "../img/doctor/3.jpg"
   },
   {
     "id": 4,
-    "specialtyId": 6,
     "name": "Dr. Peter Vu",
     "email": "doctor4@gmail.com",
     "password": "12345",
     "specialty": "Spine Care",
     "hospital": "MediConnect",
     "degree": "Master of Surgery (MS)",
-    "image": "https://randomuser.me/api/portraits/men/45.jpg"
+    "gender": "male",
+    "image": "../img/doctor/3.png"
   },
   {
     "id": 5,
-    "specialtyId": 4,
     "name": "Dr. Sarah Pham",
     "email": "doctor5@gmail.com",
     "password": "12345",
     "specialty": "Cardiology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/26.jpg"
+    "gender": "female",
+    "image": "../img/doctor/5.jpg"
   },
   {
     "id": 6,
-    "specialtyId": 2,
     "name": "Dr. John Bui",
     "email": "doctor6@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Doctor of Philosophy in Medicine (PhD)",
-    "image": "https://randomuser.me/api/portraits/men/52.jpg"
+    "gender": "male",
+    "image": "../img/doctor/3.webp"
   },
   {
     "id": 7,
-    "specialtyId": 2,
     "name": "Dr. Jennifer Do",
     "email": "doctor7@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Master of Medicine (MMed)",
-    "image": "https://randomuser.me/api/portraits/women/55.jpg"
+    "gender": "female",
+    "image": "../img/doctor/7.jpg"
   },
   {
     "id": 8,
-    "specialtyId": 2,
     "name": "Dr. William Ho",
     "email": "doctor8@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/men/56.jpg"
+    "gender": "male",
+    "image": "../img/doctor/12.webp"
   },
   {
     "id": 9,
-    "specialtyId": 2,
     "name": "Dr. Hannah Lam",
     "email": "doctor9@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/62.jpg"
+    "gender": "female",
+    "image": "../img/doctor/9.jpg"
   },
   {
     "id": 10,
-    "specialtyId": 6,
     "name": "Dr. Michael Phan",
     "email": "doctor10@gmail.com",
     "password": "12345",
     "specialty": "Spine Care",
     "hospital": "MediConnect",
     "degree": "Master of Surgery (MS)",
-    "image": "https://randomuser.me/api/portraits/men/66.jpg"
+    "gender": "male",
+    "image": "../img/doctor/13.webp"
   },
   {
     "id": 11,
-    "specialtyId": 6,
     "name": "Dr. Lisa Huynh",
     "email": "doctor11@gmail.com",
     "password": "12345",
     "specialty": "Spine Care",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/35.jpg"
+    "gender": "female",
+    "image": "../img/doctor/11.jpg"
   },
   {
     "id": 12,
-    "specialtyId": 3,
     "name": "Dr. Thomas Le",
     "email": "doctor12@gmail.com",
     "password": "12345",
     "specialty": "Gastroenterology",
     "hospital": "MediConnect",
     "degree": "Doctor of Philosophy in Medicine (PhD)",
-    "image": "https://randomuser.me/api/portraits/men/38.jpg"
+    "gender": "male",
+    "image": "../img/doctor/1.jpg"
   },
   {
     "id": 13,
-    "specialtyId": 3,
     "name": "Dr. Grace Nguyen",
     "email": "doctor13@gmail.com",
     "password": "12345",
     "specialty": "Gastroenterology",
     "hospital": "MediConnect",
     "degree": "Master of Medicine (MMed)",
-    "image": "https://randomuser.me/api/portraits/women/41.jpg"
+    "gender": "female",
+    "image": "../img/doctor/14.jpg"
   },
   {
     "id": 14,
-    "specialtyId": 3,
     "name": "Dr. Henry Phung",
     "email": "doctor14@gmail.com",
     "password": "12345",
     "specialty": "Gastroenterology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/men/47.jpg"
+    "gender": "male",
+    "image": "../img/doctor/14.jpg"
   },
   {
     "id": 15,
-    "specialtyId": 3,
     "name": "Dr. Olivia Vo",
     "email": "doctor15@gmail.com",
     "password": "12345",
     "specialty": "Gastroenterology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/44.jpg"
+    "gender": "female",
+    "image": "../img/doctor/15.jpg"
   },
   {
     "id": 16,
-    "specialtyId": 5,
     "name": "Dr. Daniel Nguyen",
     "email": "doctor16@gmail.com",
     "password": "12345",
     "specialty": "ENT (Ear, Nose, Throat)",
     "hospital": "MediConnect",
     "degree": "Master of Surgery (MS)",
-    "image": "https://randomuser.me/api/portraits/men/60.jpg"
+    "gender": "male",
+    "image": "../img/doctor/14.webp"
   },
   {
     "id": 17,
-    "specialtyId": 3,
     "name": "Dr. Sophia Pham",
     "email": "doctor17@gmail.com",
     "password": "12345",
     "specialty": "Gastroenterology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/61.jpg"
+    "gender": "female",
+    "image": "../img/doctor/17.jpg"
   },
   {
     "id": 18,
-    "specialtyId": 3,
     "name": "Dr. Ethan Tran",
     "email": "doctor18@gmail.com",
     "password": "12345",
     "specialty": "Gastroenterology",
     "hospital": "MediConnect",
     "degree": "Doctor of Philosophy in Medicine (PhD)",
-    "image": "https://randomuser.me/api/portraits/men/62.jpg"
+    "gender": "male",
+    "image": "../img/doctor/18.jpg"
   },
   {
     "id": 19,
-    "specialtyId": 3,
     "name": "Dr. Mia Vo",
     "email": "doctor19@gmail.com",
     "password": "12345",
     "specialty": "Gastroenterology",
     "hospital": "MediConnect",
     "degree": "Master of Medicine (MMed)",
-    "image": "https://randomuser.me/api/portraits/women/63.jpg"
+    "gender": "female",
+    "image": "../img/doctor/19.jpg"
   },
   {
     "id": 20,
-    "specialtyId": 5,
     "name": "Dr. Andrew Ho",
     "email": "doctor20@gmail.com",
     "password": "12345",
     "specialty": "ENT (Ear, Nose, Throat)",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/men/64.jpg"
+    "gender": "male",
+    "image": "../img/doctor/20.jpg"
   },
   {
     "id": 21,
-    "specialtyId": 2,
     "name": "Dr. Natalie Do",
     "email": "doctor21@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/68.jpg"
+    "gender": "female",
+    "image": "../img/doctor/21.jpg"
   },
   {
     "id": 22,
-    "specialtyId": 2,
     "name": "Dr. Jason Le",
     "email": "doctor22@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Doctor of Philosophy in Medicine (PhD)",
-    "image": "https://randomuser.me/api/portraits/men/69.jpg"
+    "gender": "male",
+    "image": "../img/doctor/22.jpg"
   },
   {
     "id": 23,
-    "specialtyId": 2,
     "name": "Dr. Linda Phan",
     "email": "doctor23@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Master of Medicine (MMed)",
-    "image": "https://randomuser.me/api/portraits/women/70.jpg"
+    "gender": "female",
+    "image": "../img/doctor/23.jpg"
   },
   {
     "id": 24,
-    "specialtyId": 2,
     "name": "Dr. Kevin Nguyen",
     "email": "doctor24@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/men/71.jpg"
+    "gender": "male",
+    "image": "../img/doctor/24.jpg"
   },
   {
     "id": 25,
-    "specialtyId": 2,
     "name": "Dr. Chloe Hoang",
     "email": "doctor25@gmail.com",
     "password": "12345",
     "specialty": "Neurology",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/72.jpg"
+    "gender": "female",
+    "image": "../img/doctor/25.jpg"
   },
   {
     "id": 26,
-    "specialtyId": 1,
     "name": "Dr. Jason Pham",
     "email": "doctor26@gmail.com",
     "password": "12345",
     "specialty": "Orthopedics",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/men/73.jpg"
+    "gender": "male",
+    "image": "../img/doctor/26.jpg"
   },
   {
     "id": 27,
-    "specialtyId": 5,
     "name": "Dr. Emily Tran",
     "email": "doctor27@gmail.com",
     "password": "12345",
     "specialty": "ENT (Ear, Nose, Throat)",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/74.jpg"
+    "gender": "female",
+    "image": "../img/doctor/27.jpg"
   },
   {
     "id": 28,
-    "specialtyId": 1,
     "name": "Dr. Alex Le",
     "email": "doctor28@gmail.com",
     "password": "12345",
     "specialty": "Orthopedics",
     "hospital": "MediConnect",
     "degree": "Master of Surgery (MS)",
-    "image": "https://randomuser.me/api/portraits/men/75.jpg"
+    "gender": "male",
+    "image": "../img/doctor/28.jpg"
   },
   {
     "id": 29,
-    "specialtyId": 1,
     "name": "Dr. Lily Nguyen",
     "email": "doctor29@gmail.com",
     "password": "12345",
     "specialty": "Orthopedics",
     "hospital": "MediConnect",
     "degree": "Doctor of Medicine (MD)",
-    "image": "https://randomuser.me/api/portraits/women/76.jpg"
+    "gender": "female",
+    "image": "../img/doctor/29.jpg"
   },
   {
     "id": 30,
-    "specialtyId": 5,
     "name": "Dr. Robert Vo",
     "email": "doctor30@gmail.com",
     "password": "12345",
     "specialty": "ENT (Ear, Nose, Throat)",
     "hospital": "MediConnect",
     "degree": "Doctor of Philosophy in Medicine (PhD)",
-    "image": "https://randomuser.me/api/portraits/men/77.jpg"
-  },
-  {
-  "id": 31,
-  "specialtyId": 1,
-  "name": "Dr. Style Tran",
-  "email": "doctor31@gmail.com",
-  "password": "12345",
-  "specialty": "Orthopedics",
-  "hospital": "MediConnect",
-  "degree": "Doctor of Medicine (MD)",
-  "image": "https://randomuser.me/api/portraits/women/68.jpg"
-},
-{
-  "id": 32,
-  "specialtyId": 4,
-  "name": "Dr. Gucci Nguyen",
-  "email": "doctor32@gmail.com",
-  "password": "12345",
-  "specialty": "Cardiology",
-  "hospital": "MediConnect",
-  "degree": "Doctor of Medicine (MD)",
-  "image": "https://randomuser.me/api/portraits/men/62.jpg"
-}
+    "gender": "male",
+    "image": "../img/doctor/30.jpg"
+  }
 ]
