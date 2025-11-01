@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import doctorsData from "../data/doctors.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../index.css";
-
+import "./Page.css";
 export default function AllDoctorsPage() {
   const navigate = useNavigate();
   const specialties = [
@@ -22,7 +22,9 @@ export default function AllDoctorsPage() {
     selectedSpecialty === "All"
       ? doctorsData
       : doctorsData.filter((d) => d.specialty === selectedSpecialty);
+
   return (
+    <div className="all-doctors-page fade-in">
     <div className="container my-5">
       <h2 className="text-center fw-bold text-primary mb-4"> Our Certified Medical Specialists</h2>
       <p className="text-center text-muted mb-4">Browse our team of experienced physicians and book your consultation.</p>
@@ -54,6 +56,7 @@ export default function AllDoctorsPage() {
           <p className="text-center text-muted mt-4">No doctors found for this specialty.</p>
         )}
       </div>
+    </div>
     </div>
   );
 }

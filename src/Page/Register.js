@@ -49,7 +49,7 @@ export default function Register() {
     };
     return (
         <Container className="mt-5" style={{ maxWidth: "450px" }}>
-            <Card className="p-4 shadow">
+            <Card className="p-4 shadow register-card">
                 <h3 className="text-center mb-4 text-primary">Register an account</h3>
                 {success && (
                     <Alert variant="success" className="text-center">
