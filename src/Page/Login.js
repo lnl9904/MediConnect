@@ -1,49 +1,56 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../Context/Context";
+
 
 export default function Login() {
+    // ✅ Khai báo các biến state và navigate
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    // ... phần còn lại của component
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(''); // Clear previous errors
-        
+        setError('');
+
         try {
-            // Debug logs
             console.log('🔐 Login attempt:', { email, password });
-            
-            // Get data from localStorage for validation
+
             const users = JSON.parse(localStorage.getItem('users')) || [];
             const doctors = JSON.parse(localStorage.getItem('doctors')) || [];
             const patients = JSON.parse(localStorage.getItem('patients')) || [];
-            
+
+            const allUsers = [...users, ...doctors, ...patients];
+
             console.log('📊 Available accounts:', {
-                admins: users.map(u => u.email),
-                doctors: doctors.map(d => d.email),
-                patients: patients.map(p => p.email)
+                all: allUsers.map(u => u.email)
             });
-            
-            const result = login(email, password);
-            console.log('🎯 Login result:', result);
-            
-            if (result?.success) {
-                console.log('✅ Login successful, user role:', result.user?.role);
-                if (result.user?.role === 'admin') {
+
+            const user = allUsers.find(
+                u => u.email === email && u.password === password
+            );
+
+            if (user) {
+                console.log('✅ Login successful:', user);
+
+                // ✅ Lưu trạng thái đăng nhập
+                localStorage.setItem("currentUser", JSON.stringify(user));
+
+                if (user.role === 'admin') {
                     navigate('/admin');
-                } else if (result.user?.role === 'doctor') {
+                } else if (user.role === 'doctor') {
                     navigate('/doctor/dashboard');
                 } else {
                     navigate('/');
                 }
+
             } else {
-                console.error('❌ Login failed:', result?.error);
-                setError(result?.error || 'Invalid email or password');
+                console.error('❌ Login failed');
+                setError('Invalid email or password');
             }
         } catch (error) {
             console.error('❌ Login error:', error);
@@ -57,21 +64,21 @@ export default function Login() {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control 
-                            type="email" 
-                            placeholder="Enter your email" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control 
-                            type="password" 
-                            placeholder="Enter your password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
+                        <Form.Control
+                            type="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             required
                         />
                     </Form.Group>

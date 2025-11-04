@@ -1,25 +1,28 @@
-import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import AuthContext from '../Context/Context';
 
 /**
  * ProtectedRoute usage examples:
- * - Require login: <Route element={<ProtectedRoute />}>
- * - Require role: <Route element={<ProtectedRoute requiredRoles={["admin"]} />}>
+ * - Require login: <Route element={<ProtectedRoute />} />
+ * - Require role: <Route element={<ProtectedRoute requiredRoles={["admin"]} />} />
  */
 export default function ProtectedRoute({ requiredRoles }) {
-  const { user, role } = useContext(AuthContext);
+  // Lấy thông tin người dùng đã đăng nhập từ localStorage
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-  if (!user) {
-    // Not logged in
+  // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
+  if (!currentUser) {
     return <Navigate to="/login" replace />;
   }
 
-  if (requiredRoles && requiredRoles.length > 0 && !requiredRoles.includes(role)) {
-    // Logged in but doesn't have required role
+  // Nếu có yêu cầu về vai trò và người dùng không có vai trò phù hợp, chuyển hướng về trang chủ
+  if (
+    requiredRoles &&
+    requiredRoles.length > 0 &&
+    !requiredRoles.includes(currentUser.role)
+  ) {
     return <Navigate to="/" replace />;
   }
 
-  // Authorized — render nested routes
+  // Nếu hợp lệ, render các route con
   return <Outlet />;
 }
