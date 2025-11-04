@@ -1,106 +1,271 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card, Badge } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import BookingDoctorSection from "../Components/BookingDoctorSection";
+import Banner from "../Components/Banner";
+import SpecialtySection from "../Components/SpecialtySection";
+import "../index.css";
+import "./Page.css";
 
-function HomePage() {
-    const [contents, setContents] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const navigate = useNavigate();
+export default function HomePage() {
+  const navigate = useNavigate();
+  const [fadeClass, setFadeClass] = useState("fade-in");
+  const [contents, setContents] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        // Lấy dữ liệu từ localStorage
-        const storedContents = JSON.parse(localStorage.getItem('contents')) || [];
-        // Chỉ lấy những bài đã xuất bản
-        const publishedContents = storedContents.filter(content => content.published);
-        setContents(publishedContents);
+  useEffect(() => {
+    const storedContents = JSON.parse(localStorage.getItem("contents")) || [];
+    const publishedContents = storedContents.filter((c) => c.published);
+    setContents(publishedContents);
 
-        // Tạo danh sách categories từ contents
-        const uniqueCategories = [...new Set(publishedContents.map(content => content.category))];
-        setCategories(uniqueCategories);
-    }, []);
+    const uniqueCategories = [...new Set(publishedContents.map((c) => c.category))];
+    setCategories(uniqueCategories);
+  }, []);
 
-    const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString('vi-VN', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    };
+  const smoothNavigate = (path) => {
+    setFadeClass("fade-out");
+    setTimeout(() => navigate(path), 400);
+  };
 
-    return (
-        <Container className="py-5">
-            {/* Phần Hero */}
-            <div className="text-center mb-5">
-                <h1 className="display-4 text-primary mb-3">Thông tin Y tế & Sức khỏe</h1>
-                <p className="lead text-muted">
-                    Cập nhật những thông tin y tế mới nhất và hữu ích từ đội ngũ chuyên gia
-                </p>
-            </div>
+  const specialties = [
+    { id: 1, name: "Orthopedics" },
+    { id: 2, name: "Neurology" },
+    { id: 3, name: "Gastroenterology" },
+    { id: 4, name: "Cardiology" },
+    { id: 5, name: "ENT (Ear, Nose, Throat)" },
+    { id: 6, name: "Spine Care" },
+  ];
 
-            {/* Danh mục */}
-            <div className="mb-4">
-                <h4 className="mb-3">Danh mục</h4>
-                <div className="d-flex gap-2 flex-wrap">
-                    {categories.map(category => (
-                        <Badge 
-                            key={category} 
-                            bg="primary" 
-                            className="px-3 py-2 cursor-pointer"
-                            style={{ cursor: 'pointer' }}
-                        >
-                            {category}
-                        </Badge>
-                    ))}
-                </div>
-            </div>
+  const serviceTypes = [
+    { id: 1, name: "Home examination" },
+    { id: 2, name: "Nutritional consulting" },
+  ];
 
-            {/* Danh sách bài viết */}
-            <Row xs={1} md={2} lg={3} className="g-4">
-                {contents.map(content => (
-                    <Col key={content.id}>
-                        <Card className="h-100 shadow-sm hover-shadow">
-                            {content.image && (
-                                <Card.Img 
-                                    variant="top" 
-                                    src={content.image}
-                                    style={{
-                                        height: '200px',
-                                        objectFit: 'cover'
-                                    }}
-                                />
-                            )}
-                            <Card.Body>
-                                <Badge bg="info" className="mb-2">
-                                    {content.category}
-                                </Badge>
-                                <Card.Title className="h5 text-primary">
-                                    {content.title}
-                                </Card.Title>
-                                <Card.Text className="text-muted">
-                                    {content.body.length > 150 
-                                        ? content.body.substring(0, 150) + '...'
-                                        : content.body
-                                    }
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer className="bg-transparent text-muted small">
-                                <i className="bi bi-clock me-2"></i>
-                                Cập nhật: {formatDate(content.updated_at)}
-                            </Card.Footer>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString("vi-VN", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
-            {/* Hiển thị khi không có bài viết */}
-            {contents.length === 0 && (
-                <div className="text-center py-5">
-                    <h3 className="text-muted">Chưa có bài viết nào</h3>
-                    <p>Các bài viết sẽ sớm được cập nhật</p>
-                </div>
-            )}
+  return (
+    <div className={`home-page ${fadeClass}`} style={{ fontFamily: "Segoe UI, sans-serif" }}>
+      {/* --- Banner --- */}
+      <Banner />
+
+      {/* --- Khám Chuyên Khoa --- */}
+      <SpecialtySection />
+
+      {/* --- Đặt Lịch Bác Sĩ --- */}
+      <section className="doctor-booking-section">
+        <BookingDoctorSection />
+      </section>
+
+      {/* --- Hero Banner --- */}
+      <section
+        aria-label="Hero Banner"
+        style={{
+          backgroundImage: "url('/img/banner.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          height: "70vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.55))",
+          }}
+        ></div>
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            textAlign: "center",
+            color: "#fff",
+            backgroundColor: "rgba(255,255,255,0.08)",
+            backdropFilter: "blur(4px)",
+            padding: "40px 50px",
+            borderRadius: "14px",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+            maxWidth: 900,
+          }}
+        >
+          <h1 className="fw-bold mb-3 display-5">
+            Welcome to <span className="text-info">MediConnect</span>
+          </h1>
+          <p className="fs-5 mb-4">
+            Comprehensive healthcare — Connecting doctors and patients easily
+          </p>
+          <button
+            onClick={() => smoothNavigate("/doctors")}
+            className="btn btn-light btn-lg px-4 fw-semibold shadow-sm"
+          >
+            Schedule now
+          </button>
+        </div>
+      </section>
+
+      {/* --- About MediConnect --- */}
+      <section style={{ padding: "80px 0" }}>
+        <Container>
+          <Row className="align-items-center">
+            <Col md={6} className="mb-4 mb-md-0">
+              <img
+                src="/img/about-banner.jpg"
+                alt="About MediConnect"
+                className="img-fluid rounded-4 shadow-sm"
+                style={{
+                  width: "100%",
+                  maxHeight: "420px",
+                  objectFit: "cover",
+                  borderRadius: "14px",
+                }}
+              />
+            </Col>
+            <Col md={6}>
+              <h2 className="text-primary fw-bold mb-3">About MediConnect</h2>
+              <p className="text-muted fs-5">
+                MediConnect is a digital healthcare platform that makes it easy for
+                patients to book appointments, visit online, and access high-quality
+                healthcare services. We aim for a convenient, safe, and modern
+                healthcare experience.
+              </p>
+              <div className="mt-3">
+                <button
+                  onClick={() => smoothNavigate("/about")}
+                  className="btn btn-outline-primary me-3 px-4 fw-semibold"
+                >
+                  Learn more
+                </button>
+                <button
+                  onClick={() => smoothNavigate("/contact")}
+                  className="btn btn-primary px-4 fw-semibold"
+                >
+                  Contact now
+                </button>
+              </div>
+            </Col>
+          </Row>
         </Container>
-    );
-}
+      </section>
 
-export default HomePage;
+      {/* --- Medical Services --- */}
+      <section style={{ backgroundColor: "#f9fbff", padding: "60px 0" }}>
+        <Container>
+          <h2 className="text-primary fw-bold text-center mb-4">Medical Services</h2>
+          <Row className="g-4">
+            <Col md={6}>
+              <Card className="shadow-sm border-0 h-100">
+                <Card.Body>
+                  <h4 className="text-primary mb-3">Our medical department</h4>
+                  <ul className="list-unstyled">
+                    {specialties.map((s) => (
+                      <li
+                        key={s.id}
+                        className="py-2 px-3 rounded hover-service"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => smoothNavigate(`/specialty/${s.id}`)}
+                      >
+                        {s.name}
+                      </li>
+                    ))}
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={6}>
+              <Card className="shadow-sm border-0 h-100">
+                <Card.Body>
+                  <h4 className="text-primary mb-3">Our medical services</h4>
+                  <ul className="list-unstyled">
+                    {serviceTypes.map((item) => (
+                      <li
+                        key={item.id}
+                        className="py-2 px-3 rounded hover-service"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => smoothNavigate(`/service/${item.id}`)}
+                      >
+                        {item.name}
+                      </li>
+                    ))}
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* --- News Section --- */}
+      <section style={{ padding: "80px 0" }}>
+        <Container>
+          <div className="text-center mb-5">
+            <h2 className="text-primary fw-bold mb-3">Health & Medical News</h2>
+            <p className="text-muted fs-5">
+              Stay updated with the latest healthcare insights from our experts.
+            </p>
+          </div>
+
+          {/* Categories */}
+          <div className="mb-4 text-center">
+            <div className="d-flex justify-content-center gap-2 flex-wrap">
+              {categories.map((category) => (
+                <Badge key={category} bg="primary" className="px-3 py-2">
+                  {category}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          {/* News list */}
+          <Row xs={1} md={2} lg={3} className="g-4">
+            {contents.map((content) => (
+              <Col key={content.id}>
+                <Card className="h-100 shadow-sm hover-shadow">
+                  {content.image && (
+                    <Card.Img
+                      variant="top"
+                      src={content.image}
+                      style={{ height: "200px", objectFit: "cover" }}
+                    />
+                  )}
+                  <Card.Body>
+                    <Badge bg="info" className="mb-2">
+                      {content.category}
+                    </Badge>
+                    <Card.Title className="h5 text-primary">{content.title}</Card.Title>
+                    <Card.Text className="text-muted">
+                      {content.body.length > 150
+                        ? content.body.substring(0, 150) + "..."
+                        : content.body}
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer className="bg-transparent text-muted small">
+                    <i className="bi bi-clock me-2"></i>
+                    Cập nhật: {formatDate(content.updated_at)}
+                  </Card.Footer>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+
+          {/* Empty state */}
+          {contents.length === 0 && (
+            <div className="text-center py-5">
+              <h4 className="text-muted">Chưa có bài viết nào</h4>
+              <p>Các bài viết sẽ sớm được cập nhật.</p>
+            </div>
+          )}
+        </Container>
+      </section>
+    </div>
+  );
+}

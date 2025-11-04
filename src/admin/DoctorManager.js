@@ -1,53 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Table } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Modal, Button, Form, Table, Badge } from 'react-bootstrap';
+import mockData from '../data/mockData.json';
 
 const DoctorManager = () => {
-  const [doctors, setDoctors] = useState([]);
-  const [specialties, setSpecialties] = useState([]);
-  const [users, setUsers] = useState([]);
+  // Lấy dữ liệu từ mockData
+  const [doctors, setDoctors] = useState(mockData.doctors || []);
+  const [specialties] = useState(mockData.specialties || []);
+  const [users] = useState(mockData.users || []);
+
+  // Form state
   const [form, setForm] = useState({
-    user_id: '', specialty_id: '', license_number: '', status: 'active'
+    user_id: '',
+    specialty_id: '',
+    license_number: '',
+    status: 'active'
   });
   const [editingId, setEditingId] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    setDoctors(JSON.parse(localStorage.getItem('doctors') || '[]'));
-    setSpecialties(JSON.parse(localStorage.getItem('specialties') || '[]'));
-    setUsers(JSON.parse(localStorage.getItem('users') || '[]'));
-  }, []);
-
-  const saveToStorage = updated => {
-    setDoctors(updated);
-    localStorage.setItem('doctors', JSON.stringify(updated));
-  };
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (editingId) {
-      const updated = doctors.map(d =>
+      const updated = doctors.map(d => 
         d.id === editingId ? { ...d, ...form } : d
       );
-      saveToStorage(updated);
-      setEditingId(null);
+      setDoctors(updated);
     } else {
       const newDoctor = { ...form, id: Date.now() };
-      saveToStorage([...doctors, newDoctor]);
+      setDoctors([...doctors, newDoctor]);
     }
     setForm({ user_id: '', specialty_id: '', license_number: '', status: 'active' });
+    setEditingId(null);
     setShowModal(false);
   };
 
-  const handleEdit = d => {
-    setForm({ ...d });
-    setEditingId(d.id);
+  const handleEdit = (doctor) => {
+    setForm({
+      user_id: doctor.user_id || '',
+      specialty_id: doctor.specialty_id || '',
+      license_number: doctor.license_number || '',
+      status: doctor.status || 'active'
+    });
+    setEditingId(doctor.id);
     setShowModal(true);
   };
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     if (window.confirm('Bạn có chắc muốn xóa bác sĩ này?')) {
-      const updated = doctors.filter(d => d.id !== id);
-      saveToStorage(updated);
+      setDoctors(doctors.filter(d => d.id !== id));
     }
   };
 
@@ -58,13 +58,23 @@ const DoctorManager = () => {
   };
 
   const handleClose = () => {
-    setShowModal(false);
     setForm({ user_id: '', specialty_id: '', license_number: '', status: 'active' });
     setEditingId(null);
+    setShowModal(false);
   };
 
-  const getUserName = id => users.find(u => u.id === Number(id))?.name || 'N/A';
-  const getSpecialtyName = id => specialties.find(s => s.id === Number(id))?.name || 'N/A';
+  const getUserName = (userId) => {
+    const u = users.find(u => u.id === Number(userId));
+    return u ? u.name : 'Không xác định';
+  };
+
+  const getSpecialtyName = (specId) => {
+    const sp = specialties.find(s => s.id === Number(specId));
+    return sp ? sp.name : 'Không xác định';
+  };
+
+  // Lọc user có role doctor nếu bạn muốn dropdown chọn
+  const doctorUsers = users.filter(u => u.role === 'doctor');
 
   return (
     <div className="container-fluid p-4">
@@ -87,16 +97,16 @@ const DoctorManager = () => {
           </tr>
         </thead>
         <tbody>
-          {doctors.map((doctor, index) => (
+          {doctors.map((doctor, idx) => (
             <tr key={doctor.id}>
-              <td>{index + 1}</td>
-              <td>{getUserName(doctor.user_id)}</td>
-              <td>{getSpecialtyName(doctor.specialty_id)}</td>
-              <td>{doctor.license_number}</td>
+              <td>{idx + 1}</td>
+              <td>{ doctor.user_id ? getUserName(doctor.user_id) : (doctor.name || '—') }</td>
+              <td>{ doctor.specialty_id ? getSpecialtyName(doctor.specialty_id) : (doctor.specialty || '—') }</td>
+              <td>{doctor.license_number || '—'}</td>
               <td>
-                <span className={`badge ${doctor.status === 'active' ? 'bg-success' : 'bg-danger'}`}>
-                  {doctor.status === 'active' ? 'Hoạt động' : 'Ngưng hoạt động'}
-                </span>
+                <Badge bg={ (doctor.status && doctor.status.toLowerCase() === 'active') ? 'success' : 'danger' }>
+                  { (doctor.status && doctor.status.toLowerCase() === 'active') ? 'Hoạt động' : 'Ngưng hoạt động' }
+                </Badge>
               </td>
               <td>
                 <Button variant="warning" size="sm" className="me-2" onClick={() => handleEdit(doctor)}>
@@ -118,14 +128,14 @@ const DoctorManager = () => {
         <Form onSubmit={handleSubmit}>
           <Modal.Body>
             <Form.Group className="mb-3">
-              <Form.Label>Bác sĩ</Form.Label>
+              <Form.Label>Bác sĩ (User)</Form.Label>
               <Form.Select
                 value={form.user_id}
                 onChange={e => setForm({ ...form, user_id: e.target.value })}
                 required
               >
-                <option value="">-- Chọn bác sĩ --</option>
-                {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
+                <option value="">-- Chọn bác sĩ (user) --</option>
+                {doctorUsers.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
               </Form.Select>
             </Form.Group>
 
@@ -157,6 +167,7 @@ const DoctorManager = () => {
               <Form.Select
                 value={form.status}
                 onChange={e => setForm({ ...form, status: e.target.value })}
+                required
               >
                 <option value="active">Hoạt động</option>
                 <option value="inactive">Ngưng hoạt động</option>
@@ -164,12 +175,8 @@ const DoctorManager = () => {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Hủy
-            </Button>
-            <Button variant="primary" type="submit">
-              {editingId ? 'Cập nhật' : 'Thêm mới'}
-            </Button>
+            <Button variant="secondary" onClick={handleClose}>Hủy</Button>
+            <Button variant="primary" type="submit">{editingId ? 'Cập nhật' : 'Thêm mới'}</Button>
           </Modal.Footer>
         </Form>
       </Modal>
