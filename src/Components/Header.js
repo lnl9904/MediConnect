@@ -1,12 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AuthContext from "../Context/Context";
 import "../Styles/Header.css";
 
 export default function Header() {
-  const { user, role, logout } = useContext(AuthContext);
-  
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const role = currentUser?.role;
+
+  const logout = () => {
+    localStorage.removeItem("currentUser");
+    window.location.href = "/login";
+  };
+
+  const displayName = currentUser
+    ? currentUser.fullName ||
+      `${currentUser.firstName || ""} ${currentUser.lastName || ""}`.trim() ||
+      currentUser.name ||
+      currentUser.email
+    : "";
+
   return (
     <Navbar bg="light" expand="lg" className="shadow-sm sticky-top">
       <Container>
@@ -22,10 +34,10 @@ export default function Header() {
             <Nav.Link as={Link} to="/contact" className="text-primary fw-medium">Contact</Nav.Link>
           </Nav>
           <Nav>
-            {user ? (
+            {currentUser ? (
               <>
                 <span className="me-3 fw-semibold text-primary">
-                 Hello,&nbsp;{user.fullName ? user.fullName : user.firstName || user.lastName ? `${user.firstName || ""} ${user.lastName || ""}`.trim() : user.name || user.email}
+                  Hello,&nbsp;{displayName}
                 </span>
                 <NavDropdown title="Account" id="user-dropdown" align="end">
                   {role === "admin" && (
@@ -50,7 +62,7 @@ export default function Header() {
                   <NavDropdown.Item onClick={logout} className="text-danger">Log out</NavDropdown.Item>
                 </NavDropdown>
               </>
-              ) : (
+            ) : (
               <>
                 <Button as={Link} to="/login" variant="outline-primary" className="ms-3">Login</Button>
                 <Button as={Link} to="/register" variant="primary" className="ms-2">Register</Button>

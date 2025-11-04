@@ -4,70 +4,121 @@ import { Modal, Button, Form, Table, Badge } from 'react-bootstrap';
 const UserManager = () => {
   const [users, setUsers] = useState([]);
   const [form, setForm] = useState({
-    name: '', email: '', password: '', role: '', phone: '',
-    avatar: '', email_verified_at: '', active: true
+    name: '',
+    email: '',
+    password: '',
+    role: '',
+    phone: '',
+    avatar: '',
+    email_verified_at: '',
+    active: true
   });
   const [editingId, setEditingId] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('users') || '[]');
-    setUsers(stored);
+    const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
+    setUsers(storedUsers);
   }, []);
 
-  const saveToStorage = updated => {
-    setUsers(updated);
-    localStorage.setItem('users', JSON.stringify(updated));
+  const saveToUsersStorage = (updatedUsers) => {
+    setUsers(updatedUsers);
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
 
-  const handleSubmit = e => {
+  const saveToPatientsStorage = (newPatient) => {
+    // load existing patients
+    const storedPatients = JSON.parse(localStorage.getItem('patients') || '[]');
+    // add new patient
+    const updatedPatients = [...storedPatients, newPatient];
+    localStorage.setItem('patients', JSON.stringify(updatedPatients));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (editingId) {
+      // edit existing user
       const updated = users.map(u =>
-        u.id === editingId ? { ...u, ...form } : u
+        u.id === editingId ? { ...u, ...form, updated_at: new Date().toISOString() } : u
       );
-      saveToStorage(updated);
-      setEditingId(null);
+      saveToUsersStorage(updated);
     } else {
+      // add new user
       const newUser = {
         ...form,
         id: Date.now(),
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
-      saveToStorage([...users, newUser]);
+      const updatedUsers = [...users, newUser];
+      saveToUsersStorage(updatedUsers);
+
+      // nếu role là patient thì thêm vào bảng patients
+      if (newUser.role === 'patient') {
+        // bạn có thể định nghĩa patient object phù hợp
+        const newPatient = {
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+          phone: newUser.phone,
+          gender: newUser.gender || '',        // nếu bạn có gender trong form
+          dob: newUser.dob || '',              // nếu bạn có dob trong form
+          created_at: newUser.created_at,
+          updated_at: newUser.updated_at
+        };
+        saveToPatientsStorage(newPatient);
+      }
     }
+
+    // reset form
     setForm({
-      name: '', email: '', password: '', role: '', phone: '',
-      avatar: '', email_verified_at: '', active: true
+      name: '',
+      email: '',
+      password: '',
+      role: '',
+      phone: '',
+      avatar: '',
+      email_verified_at: '',
+      active: true
     });
     setShowModal(false);
+    setEditingId(null);
   };
 
-  const handleEdit = u => {
+  const handleEdit = (u) => {
     setForm({ ...u });
     setEditingId(u.id);
     setShowModal(true);
   };
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     if (window.confirm('Bạn có chắc muốn xóa người dùng này?')) {
       const updated = users.filter(u => u.id !== id);
-      saveToStorage(updated);
+      saveToUsersStorage(updated);
+      // **Optional**: nếu user bị xóa và role là patient, cũng nên xóa khỏi patients
+      const storedPatients = JSON.parse(localStorage.getItem('patients') || '[]');
+      const updatedPatients = storedPatients.filter(p => p.id !== id);
+      localStorage.setItem('patients', JSON.stringify(updatedPatients));
     }
   };
 
-  const toggleActive = id => {
+  const toggleActive = (id) => {
     const updated = users.map(u =>
-      u.id === id ? { ...u, active: !u.active } : u
+      u.id === id ? { ...u, active: !u.active, updated_at: new Date().toISOString() } : u
     );
-    saveToStorage(updated);
+    saveToUsersStorage(updated);
   };
 
   const handleAdd = () => {
     setForm({
-      name: '', email: '', password: '', role: '', phone: '',
-      avatar: '', email_verified_at: '', active: true
+      name: '',
+      email: '',
+      password: '',
+      role: '',
+      phone: '',
+      avatar: '',
+      email_verified_at: '',
+      active: true
     });
     setEditingId(null);
     setShowModal(true);
@@ -76,8 +127,14 @@ const UserManager = () => {
   const handleClose = () => {
     setShowModal(false);
     setForm({
-      name: '', email: '', password: '', role: '', phone: '',
-      avatar: '', email_verified_at: '', active: true
+      name: '',
+      email: '',
+      password: '',
+      role: '',
+      phone: '',
+      avatar: '',
+      email_verified_at: '',
+      active: true
     });
     setEditingId(null);
   };
@@ -95,60 +152,36 @@ const UserManager = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Avatar</th>
-            <th>Họ tên</th>
+            <th>Tên</th>
             <th>Email</th>
-            <th>SĐT</th>
             <th>Vai trò</th>
+            <th>Điện thoại</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
+          {users.map((u, idx) => (
+            <tr key={u.id}>
+              <td>{idx + 1}</td>
+              <td>{u.name}</td>
+              <td>{u.email}</td>
+              <td>{u.role}</td>
+              <td>{u.phone || '-'}</td>
               <td>
-                {user.avatar && (
-                  <img 
-                    src={user.avatar} 
-                    alt={user.name} 
-                    style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
-                  />
-                )}
-              </td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
-              <td>
-                <Badge bg={
-                  user.role === 'admin' ? 'danger' :
-                  user.role === 'doctor' ? 'info' :
-                  'success'
-                }>
-                  {user.role}
+                <Badge bg={u.active ? 'success' : 'danger'}>
+                  {u.active ? 'Hoạt động' : 'Ngưng hoạt động'}
                 </Badge>
               </td>
               <td>
-                <Badge bg={user.active ? 'success' : 'secondary'}>
-                  {user.active ? '✅ Hoạt động' : '🚫 Đã khóa'}
-                </Badge>
-              </td>
-              <td>
-                <Button variant="warning" size="sm" className="me-2" onClick={() => handleEdit(user)}>
+                <Button variant="warning" size="sm" className="me-2" onClick={() => handleEdit(u)}>
                   <i className="bi bi-pencil me-1"></i>Sửa
                 </Button>
-                <Button 
-                  variant={user.active ? 'secondary' : 'success'} 
-                  size="sm" 
-                  className="me-2"
-                  onClick={() => toggleActive(user.id)}
-                >
-                  <i className={`bi bi-${user.active ? 'lock' : 'unlock'} me-1`}></i>
-                  {user.active ? 'Khóa' : 'Mở khóa'}
-                </Button>
-                <Button variant="danger" size="sm" onClick={() => handleDelete(user.id)}>
+                <Button variant="danger" size="sm" onClick={() => handleDelete(u.id)}>
                   <i className="bi bi-trash me-1"></i>Xóa
+                </Button>
+                <Button variant="info" size="sm" onClick={() => toggleActive(u.id)}>
+                  <i className="bi bi-toggle-on me-1"></i>Toggle
                 </Button>
               </td>
             </tr>
@@ -158,21 +191,20 @@ const UserManager = () => {
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{editingId ? 'Sửa thông tin người dùng' : 'Thêm người dùng mới'}</Modal.Title>
+          <Modal.Title>{editingId ? 'Sửa người dùng' : 'Thêm người dùng mới'}</Modal.Title>
         </Modal.Header>
         <Form onSubmit={handleSubmit}>
           <Modal.Body>
             <Form.Group className="mb-3">
-              <Form.Label>Họ tên</Form.Label>
+              <Form.Label>Họ & tên</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Nhập họ tên"
+                placeholder="Nhập tên"
                 value={form.name}
                 onChange={e => setForm({ ...form, name: e.target.value })}
                 required
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -183,20 +215,16 @@ const UserManager = () => {
                 required
               />
             </Form.Group>
-
-            {!editingId && (
-              <Form.Group className="mb-3">
-                <Form.Label>Mật khẩu</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Nhập mật khẩu"
-                  value={form.password}
-                  onChange={e => setForm({ ...form, password: e.target.value })}
-                  required={!editingId}
-                />
-              </Form.Group>
-            )}
-
+            <Form.Group className="mb-3">
+              <Form.Label>Mật khẩu</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Nhập mật khẩu"
+                value={form.password}
+                onChange={e => setForm({ ...form, password: e.target.value })}
+                required={!editingId}
+              />
+            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Vai trò</Form.Label>
               <Form.Select
@@ -206,48 +234,42 @@ const UserManager = () => {
               >
                 <option value="">-- Chọn vai trò --</option>
                 <option value="admin">Admin</option>
-                <option value="doctor">Bác sĩ</option>
-                <option value="patient">Bệnh nhân</option>
+                <option value="doctor">Doctor</option>
+                <option value="patient">Patient</option>
               </Form.Select>
             </Form.Group>
-
             <Form.Group className="mb-3">
-              <Form.Label>Số điện thoại</Form.Label>
+              <Form.Label>Điện thoại</Form.Label>
               <Form.Control
-                type="tel"
+                type="text"
                 placeholder="Nhập số điện thoại"
                 value={form.phone}
                 onChange={e => setForm({ ...form, phone: e.target.value })}
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
-              <Form.Label>Avatar URL</Form.Label>
+              <Form.Label>Avatar (URL)</Form.Label>
               <Form.Control
-                type="url"
-                placeholder="Nhập URL hình đại diện"
+                type="text"
+                placeholder="Nhập đường dẫn avatar"
                 value={form.avatar}
                 onChange={e => setForm({ ...form, avatar: e.target.value })}
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
-              <Form.Check
-                type="switch"
-                id="active-switch"
-                label="Tài khoản hoạt động"
-                checked={form.active}
-                onChange={e => setForm({ ...form, active: e.target.checked })}
-              />
+              <Form.Label>Trạng thái hoạt động</Form.Label>
+              <Form.Select
+                value={form.active ? 'true' : 'false'}
+                onChange={e => setForm({ ...form, active: e.target.value === 'true' })}
+              >
+                <option value="true">Hoạt động</option>
+                <option value="false">Ngưng hoạt động</option>
+              </Form.Select>
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Hủy
-            </Button>
-            <Button variant="primary" type="submit">
-              {editingId ? 'Cập nhật' : 'Thêm mới'}
-            </Button>
+            <Button variant="secondary" onClick={handleClose}>Hủy</Button>
+            <Button variant="primary" type="submit">{editingId ? 'Cập nhật' : 'Thêm mới'}</Button>
           </Modal.Footer>
         </Form>
       </Modal>
