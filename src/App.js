@@ -11,7 +11,6 @@ import Footer from './Components/Footer';
 import { AuthProvider } from './Context/Context';
 import { AppointmentProvider } from './Context/AppointmentContext';
 import Dashboard from './admin/Dashboard';
-import CityManager from './admin/CityManager';
 import DoctorManager from './admin/DoctorManager';
 import PatientManager from './admin/PatientManager';
 import UserManager from './admin/UserManager';
@@ -131,7 +130,6 @@ function App() {
             <Route element={<ProtectedRoute requiredRoles={["admin"]} />}>
               <Route path="/admin" element={<AdminDashboard />}>
                 <Route index element={<Dashboard />} />
-                <Route path="cities" element={<CityManager />} />
                 <Route path="doctors" element={<DoctorManager />} />
                 <Route path="patients" element={<PatientManager />} />
                 <Route path="users" element={<UserManager />} />
